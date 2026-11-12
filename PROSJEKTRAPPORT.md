@@ -49,12 +49,13 @@ Prosjektet eies av to personer som begge bruker Claude.
 
 - **GitHub-repo:** `stn-vibecoder/projectneo`. Den andre eieren er lagt til som collaborator.
 - **Vercel:** prosjektet ligger på `stn-vibecoder` sin Hobby-konto. På Hobby kan bygg fra commits laget av andre enn kontoeieren bli blokkert.
-- **Arbeidsflyt for den som ikke eier Vercel-kontoen:**
-  1. Lag endringene på en egen gren, f.eks. `feature/kort-beskrivelse`.
-  2. Kjør `npm run check` (og helst `npm run build`) før du pusher.
-  3. Push grenen og åpne en pull request mot `main` med en kort beskrivelse på norsk.
-  4. Kontoeieren ser over og merger. Merge-commiten utløser produksjonsbygget på Vercel.
-- **Ikke push direkte til `main`** uten avtale. `main` går rett ut på nettsiden.
+- **Begge kan endre fritt og pushe rett til `main`**, uten godkjenning fra den andre. Hver push til `main` går rett ut på nettsiden.
+- **Før hver push:**
+  1. Kjør `git pull --rebase` (den andre kan ha pushet i mellomtiden).
+  2. Kjør `npm run check`.
+  3. Helst også `npm run build`.
+  Skriv commit-meldinger på norsk.
+- Store eller risikable endringer kan gjerne gjøres på en egen gren først, men det er ikke påkrevd.
 - **Hver utvikler har sin egen lokale database** i `.data/` (ikke i git). Det er bare nettsiden som har felles data.
 - **Ingen nøkler eller passord trengs lokalt.** Appen kjører i lokal modus uten `.env.local`.
 

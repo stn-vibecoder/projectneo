@@ -4,20 +4,28 @@ import { Suspense } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useTranslations } from "next-intl";
-import { Briefcase, LayoutDashboard, Landmark, LogOut, Plus, Radar, Search, Settings, SquareKanban } from "lucide-react";
+import { Briefcase, LayoutDashboard, Landmark, LogIn, LogOut, Plus, Radar, Search, Settings, SquareKanban } from "lucide-react";
+import type { AuthMode } from "@/lib/env";
 import { cn } from "@/lib/utils";
 import { buttonVariants } from "@/components/ui/button";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { signOut } from "@/lib/actions/auth";
 import { openCommandPalette } from "@/components/command-palette";
 
-const ITEMS = [
+/** Hvem som ser menyen. Bestemmes på serveren (se (app)/layout.tsx). */
+export type Account = { mode: AuthMode; signedIn: boolean; email: string | null; admin: boolean };
+
+type Item = { href: string; key: "dashboard" | "feed" | "tracker" | "sources" | "settings"; icon: typeof Briefcase; adminOnly?: boolean };
+const ALL_ITEMS: Item[] = [
   { href: "/dashboard", key: "dashboard", icon: LayoutDashboard },
   { href: "/feed", key: "feed", icon: Briefcase },
   { href: "/tracker", key: "tracker", icon: SquareKanban },
-  { href: "/sources", key: "sources", icon: Radar },
+  { href: "/sources", key: "sources", icon: Radar, adminOnly: true },
   { href: "/settings", key: "settings", icon: Settings },
-] as const;
+];
+
+/** Kilder vises bare for administratorer. */
+const itemsFor = (account: Account) => ALL_ITEMS.filter((i) => !i.adminOnly || account.admin);
 
 function useActive() {
   const pathname = usePathname();
@@ -46,18 +54,31 @@ function Logo({ inverted = false }: { inverted?: boolean }) {
   );
 }
 
-export function Sidebar({ showSignOut = false }: { showSignOut?: boolean }) {
+export function Sidebar({ account }: { account: Account }) {
   const t = useTranslations("nav");
+  const items = itemsFor(account);
+  const canSignIn = account.mode !== "local" && !account.signedIn;
+  const canSignOut = account.mode !== "local" && account.signedIn;
   return (
     <aside className="sticky top-0 hidden h-dvh w-64 shrink-0 flex-col border-r border-sidebar-border bg-sidebar p-5 text-sidebar-foreground lg:flex">
       <Logo inverted />
-      <Link
-        href="/jobs/new"
-        className="mt-7 inline-flex h-9 items-center gap-2 rounded-md border border-gold/40 px-3 text-sm font-medium text-gold transition-colors hover:bg-gold/10"
-      >
-        <Plus className="size-4" />
-        {t("addJob")}
-      </Link>
+      {canSignIn ? (
+        <Link
+          href="/login"
+          className="mt-7 inline-flex h-9 items-center gap-2 rounded-md bg-gold px-3 text-sm font-semibold text-sidebar transition-opacity hover:opacity-90"
+        >
+          <LogIn className="size-4" />
+          {t("signIn")}
+        </Link>
+      ) : (
+        <Link
+          href="/jobs/new"
+          className="mt-7 inline-flex h-9 items-center gap-2 rounded-md border border-gold/40 px-3 text-sm font-medium text-gold transition-colors hover:bg-gold/10"
+        >
+          <Plus className="size-4" />
+          {t("addJob")}
+        </Link>
+      )}
       <button
         type="button"
         onClick={openCommandPalette}
@@ -68,12 +89,13 @@ export function Sidebar({ showSignOut = false }: { showSignOut?: boolean }) {
         <kbd className="rounded border border-sidebar-border px-1.5 font-mono text-[10px]">⌘K</kbd>
       </button>
       <p className="eyebrow mt-6 mb-2 px-3 text-sidebar-muted">{t("menu")}</p>
-      <Suspense fallback={<SidebarLinks isActive={() => false} />}>
-        <ActiveLinks variant="sidebar" />
+      <Suspense fallback={<SidebarLinks items={items} isActive={() => false} />}>
+        <ActiveLinks variant="sidebar" items={items} />
       </Suspense>
+      {canSignIn && <p className="mt-4 px-3 text-xs leading-relaxed text-sidebar-muted">{t("signInHint")}</p>}
       <div className="mt-auto flex items-center justify-between gap-2 border-t border-sidebar-border pt-4">
         <ThemeToggle inverted />
-        {showSignOut && (
+        {canSignOut && (
           <form action={signOut}>
             <button
               type="submit"
@@ -90,8 +112,9 @@ export function Sidebar({ showSignOut = false }: { showSignOut?: boolean }) {
   );
 }
 
-export function MobileHeader() {
+export function MobileHeader({ account }: { account: Account }) {
   const t = useTranslations("nav");
+  const canSignIn = account.mode !== "local" && !account.signedIn;
   return (
     <header className="sticky top-0 z-30 flex h-14 items-center justify-between gap-3 border-b border-sidebar-border bg-sidebar px-4 text-sidebar-foreground lg:hidden">
       <Logo inverted />
@@ -106,37 +129,49 @@ export function MobileHeader() {
         >
           <Search className="size-[18px]" />
         </button>
-        <Link
-          href="/jobs/new"
-          aria-label={t("addJob")}
-          className={cn(buttonVariants({ size: "icon" }), "bg-gold text-sidebar hover:opacity-90")}
-        >
-          <Plus />
-        </Link>
+        {canSignIn ? (
+          <Link href="/login" className={cn(buttonVariants({ size: "sm" }), "bg-gold text-sidebar hover:opacity-90")}>
+            <LogIn />
+            {t("signIn")}
+          </Link>
+        ) : (
+          <Link
+            href="/jobs/new"
+            aria-label={t("addJob")}
+            className={cn(buttonVariants({ size: "icon" }), "bg-gold text-sidebar hover:opacity-90")}
+          >
+            <Plus />
+          </Link>
+        )}
       </div>
     </header>
   );
 }
 
-export function MobileTabs() {
+export function MobileTabs({ account }: { account: Account }) {
+  const items = itemsFor(account);
   return (
-    <Suspense fallback={<TabLinks isActive={() => false} />}>
-      <ActiveLinks variant="tabs" />
+    <Suspense fallback={<TabLinks items={items} isActive={() => false} />}>
+      <ActiveLinks variant="tabs" items={items} />
     </Suspense>
   );
 }
 
 /** usePathname() er kjøretidsdata; holdes inne i Suspense så sidene kan forhåndsrendres. */
-function ActiveLinks({ variant }: { variant: "sidebar" | "tabs" }) {
+function ActiveLinks({ variant, items }: { variant: "sidebar" | "tabs"; items: Item[] }) {
   const isActive = useActive();
-  return variant === "sidebar" ? <SidebarLinks isActive={isActive} /> : <TabLinks isActive={isActive} />;
+  return variant === "sidebar" ? (
+    <SidebarLinks items={items} isActive={isActive} />
+  ) : (
+    <TabLinks items={items} isActive={isActive} />
+  );
 }
 
-function SidebarLinks({ isActive }: { isActive: (href: string) => boolean }) {
+function SidebarLinks({ items, isActive }: { items: Item[]; isActive: (href: string) => boolean }) {
   const t = useTranslations("nav");
   return (
     <nav aria-label={t("mainNav")} className="flex flex-col gap-0.5">
-      {ITEMS.map(({ href, key, icon: Icon }) => {
+      {items.map(({ href, key, icon: Icon }) => {
         const active = isActive(href);
         return (
           <Link
@@ -158,14 +193,15 @@ function SidebarLinks({ isActive }: { isActive: (href: string) => boolean }) {
   );
 }
 
-function TabLinks({ isActive }: { isActive: (href: string) => boolean }) {
+function TabLinks({ items, isActive }: { items: Item[]; isActive: (href: string) => boolean }) {
   const t = useTranslations("nav");
   return (
     <nav
       aria-label={t("mainNav")}
-      className="fixed inset-x-0 bottom-0 z-30 grid grid-cols-5 border-t border-sidebar-border bg-sidebar/95 pb-[env(safe-area-inset-bottom)] backdrop-blur lg:hidden"
+      style={{ gridTemplateColumns: `repeat(${items.length}, minmax(0, 1fr))` }}
+      className="fixed inset-x-0 bottom-0 z-30 grid border-t border-sidebar-border bg-sidebar/95 pb-[env(safe-area-inset-bottom)] backdrop-blur lg:hidden"
     >
-      {ITEMS.map(({ href, key, icon: Icon }) => {
+      {items.map(({ href, key, icon: Icon }) => {
         const active = isActive(href);
         return (
           <Link

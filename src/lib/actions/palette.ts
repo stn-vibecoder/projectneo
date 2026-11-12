@@ -1,7 +1,7 @@
 "use server";
 
-import { requireUser } from "@/lib/auth";
-import { asUser } from "@/lib/db";
+import { getCurrentUser } from "@/lib/auth";
+import { asViewer } from "@/lib/db";
 
 export type PaletteData = {
   applications: { id: string; company: string; title: string; status: string }[];
@@ -10,9 +10,10 @@ export type PaletteData = {
 
 /** Søknader og åpne stillinger til hurtigsøket (hentes første gang det åpnes). */
 export async function getPaletteData(): Promise<PaletteData> {
-  const user = await requireUser();
-  return asUser(user.id, async (sql) => ({
-    applications: await sql.query(
+  const user = await getCurrentUser();
+  return asViewer(user, async (sql) => ({
+    // Besøkende har ingen søknader; de ser bare åpne stillinger.
+    applications: !user ? [] : await sql.query(
       `select a.id, c.name as company, j.title, s.label as status
          from applications a
          join jobs j on j.id = a.job_id

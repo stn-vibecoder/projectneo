@@ -72,5 +72,6 @@ export async function signInWithGoogle(formData: FormData) {
 export async function signOut() {
   const supabase = await createClient();
   await supabase.auth.signOut();
-  redirect("/login");
+  // Ut til stillingene, som er åpne for alle.
+  redirect("/feed");
 }

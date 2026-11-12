@@ -3,7 +3,9 @@
 import { revalidatePath } from "next/cache";
 import { getTranslations } from "next-intl/server";
 import { z } from "zod";
-import { requireUser } from "@/lib/auth";
+// Kildene er felles og styres bare av administratorer (ADMIN_EMAILS).
+// requireSourceAdmin() gir eieren av de felles kildene, så RLS gjelder dem.
+import { requireSourceAdmin } from "@/lib/auth";
 import { asService, asUser } from "@/lib/db";
 import { isIndustry, type Industry } from "@/lib/domain";
 import { safeUrl } from "@/lib/utils";
@@ -37,7 +39,7 @@ export type Preview = {
 /** Finn ut hva lenken er, og prøvehent for å vise hva kilden gir. */
 export async function previewSource(rawUrl: string): Promise<ActionResult<Preview>> {
   const t = await getTranslations("sources");
-  await requireUser();
+  await requireSourceAdmin();
 
   let detected: Detected | null = detectFromUrl(rawUrl);
   if (detected === null) {
@@ -106,7 +108,7 @@ export async function addSource(input: z.infer<typeof addSchema>): Promise<Actio
   const t = await getTranslations("sources");
   const parsed = addSchema.safeParse(input);
   if (!parsed.success) return fail(t("errors.invalid"));
-  const user = await requireUser();
+  const user = await requireSourceAdmin();
   const industry: Industry | null = parsed.data.industry && isIndustry(parsed.data.industry) ? parsed.data.industry : null;
 
   let id: string;
@@ -133,7 +135,7 @@ export async function addSource(input: z.infer<typeof addSchema>): Promise<Actio
 export async function setSourceEnabled(id: string, enabled: boolean): Promise<ActionResult> {
   const t = await getTranslations("common");
   if (!z.uuid().safeParse(id).success) return fail(t("error"));
-  const user = await requireUser();
+  const user = await requireSourceAdmin();
   await asUser(user.id, (sql) => sql.query(`update sources set enabled = $2 where id = $1`, [id, enabled]));
   revalidate();
   return ok();
@@ -142,7 +144,7 @@ export async function setSourceEnabled(id: string, enabled: boolean): Promise<Ac
 export async function updateSourceIndustry(id: string, industry: string): Promise<ActionResult> {
   const t = await getTranslations("common");
   if (!z.uuid().safeParse(id).success) return fail(t("error"));
-  const user = await requireUser();
+  const user = await requireSourceAdmin();
   await asUser(user.id, (sql) =>
     sql.query(`update sources set industry = $2 where id = $1`, [id, isIndustry(industry) ? industry : null]),
   );
@@ -153,7 +155,7 @@ export async function updateSourceIndustry(id: string, industry: string): Promis
 export async function deleteSource(id: string): Promise<ActionResult> {
   const t = await getTranslations("common");
   if (!z.uuid().safeParse(id).success) return fail(t("error"));
-  const user = await requireUser();
+  const user = await requireSourceAdmin();
   const [deleted] = await asUser(user.id, (sql) =>
     sql.query<{ id: string }>(`delete from sources where id = $1 returning id`, [id]),
   );
@@ -166,7 +168,7 @@ export async function deleteSource(id: string): Promise<ActionResult> {
 export async function runSourceNow(id: string): Promise<ActionResult<RunResult>> {
   const t = await getTranslations("common");
   if (!z.uuid().safeParse(id).success) return fail(t("error"));
-  const user = await requireUser();
+  const user = await requireSourceAdmin();
   const [own] = await asUser(user.id, (sql) => sql.query<{ id: string }>(`select id from sources where id = $1`, [id]));
   if (!own) return fail(t("error"));
   const result = await runSource(id);
@@ -175,7 +177,7 @@ export async function runSourceNow(id: string): Promise<ActionResult<RunResult>>
 }
 
 export async function runAllNow(): Promise<ActionResult<RunResult[]>> {
-  const user = await requireUser();
+  const user = await requireSourceAdmin();
   const results = await runAllSources(user.id);
   revalidate();
   return ok(results);
@@ -192,7 +194,7 @@ export type ImportSummary = {
  */
 export async function importSources(csv: string): Promise<ActionResult<ImportSummary>> {
   const t = await getTranslations("sources");
-  const user = await requireUser();
+  const user = await requireSourceAdmin();
   const rows = toImportRows(csv).slice(0, 300);
   if (rows.length === 0) return fail(t("import.empty"));
 

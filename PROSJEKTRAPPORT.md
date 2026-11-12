@@ -35,7 +35,8 @@ konsulent og revisjon (Big 4) i **Oslo, Stockholm, New York og London**. Appen h
 | Klargjort for Vercel (Postgres, migrering i bygg, cron) | Ferdig, testet mot ekte Postgres lokalt |
 | Deploy til Vercel | Ferdig. Kjører uten innlogging, med 84 standardkilder (avsnitt 11) |
 | Fase 3: AI-søknadstips (Anthropic API) | Ikke startet |
-| Fase 4: e-postpåminnelser, påtvunget innlogging | Ikke startet. Eieren vil vente |
+| Brukere og innlogging (valgfri, Google + e-post) | Bygget 13.11.2026. Google-oppsett i Google Cloud og Supabase gjenstår (README) |
+| Fase 4: e-postpåminnelser | Ikke startet |
 
 - **Kode:** `~/Developer/internship-portal` på eierens Mac. Ikke i iCloud, fordi node_modules ga synkroniseringsproblemer.
 - **GitHub:** `stn-vibecoder/projectneo`, gren `main`. Repoet er **offentlig**, eieren valgte det selv.
@@ -67,9 +68,7 @@ Prosjektet eies av to personer som begge bruker Claude.
   - Begge ligger bak bryteren `STUDENT_PORTALS_ENABLED`.
   - Henting skal skje sjelden og med generisk User-Agent.
   - Hvis appen blir offentlig eller kommersiell, må dette tas opp igjen og bryteren slås av.
-- **Ingen innlogging foreløpig**, heller ikke på Vercel. Eieren vil ha det som finansterminalen sin: åpen lenke.
-  - Innlogging er ferdig bygget og kan slås på med miljøvariabler (se avsnitt 5).
-  - Ikke press på for å slå den på.
+- **Åpen nettside med valgfri innlogging** (besluttet 13.11.2026): alle kan se stillingene, men må logge inn med Google eller e-post for å lagre. Hver bruker har egne data. Eksisterende data fra perioden uten innlogging ble ikke flyttet; alle startet på nytt.
 - **Hemmeligheter** ligger bare i `.env.local` eller som miljøvariabler i Vercel, aldri i koden.
   - Repoet er offentlig: sjekk alltid for nøkler før commit.
 - **Design:** eieren liker **navy/gull-fargene** og **regnearkløsningen** for søknader svært godt. De skal beholdes.
@@ -102,13 +101,22 @@ Prosjektet eies av to personer som begge bruker Claude.
 
 ## 5. Kjøremoduser
 
-Velges automatisk ut fra miljøvariabler (`src/lib/db/index.ts`, `src/lib/auth.ts`, `src/lib/env.ts`):
+Velges automatisk ut fra miljøvariabler (`authMode()` i `src/lib/env.ts`, `src/lib/auth.ts`, `src/lib/db/index.ts`):
 
-| | Database | Innlogging |
+| Modus | Når | Hvem ser hva |
 |---|---|---|
-| **Lokalt på Macen** (ingen DB-variabel) | PGlite i `.data/pglite` | Ingen. Én fast bruker |
-| **Vercel nå** (`POSTGRES_URL`/`DATABASE_URL` satt) | Supabase Postgres | Ingen. Én fast bruker |
-| **Senere** (+ `NEXT_PUBLIC_REQUIRE_LOGIN=true`) | Supabase Postgres | Supabase Auth, bare e-poster i `ALLOWED_EMAILS` |
+| **local** | Ingen Supabase-nøkler (Macen), eller `NEXT_PUBLIC_LOGIN=off` | Ingen innlogging. Én fast bruker |
+| **optional** (Vercel nå) | Supabase-nøkler finnes | Alle ser feed og stillingssider. Innlogging (Google/e-post) kreves for tracker, Oversikt, kalender, innstillinger og lagring. Hver bruker har egne data |
+| **required** | `NEXT_PUBLIC_LOGIN=required` | Innlogging for alt. `ALLOWED_EMAILS` kan begrense hvem |
+
+- **Åpne sider:** `/feed`, `/jobs/<id>`, `/login`, `/auth/*` og `/api/cron` (se `isPublicPath`). Resten sender til `/login?next=…`, og etter innlogging kommer man tilbake dit.
+- **Besøkende:** spørringer kjøres med `asAnon()` / `asViewer()` som rollen `anon`. RLS gir bare lesetilgang til felles `jobs` og `companies` (migrasjon `…13000001_public_read`).
+- **Standardvalg for besøkende:** alle fire byer og bransjene finans, konsulent og revisjon (`GUEST_PREFS` i `data.ts`).
+- **Kilder er felles** og eies av systembrukeren (`SOURCES_OWNER_ID`).
+  - Bare administratorer (`ADMIN_EMAILS`) ser Kilder-siden og kan endre den.
+  - `requireSourceAdmin()` sjekker rollen og kjører spørringene som systembrukeren.
+  - Lokalt er alle administratorer.
+- **Eierne har valgt å beholde NHHS og Bindeleddet for alle** (også besøkende) på eget ansvar, selv om nettsiden nå er åpen og ikke lenger kun til personlig bruk.
 
 **Den faste brukeren:**
 - id `00000000-0000-4000-8000-000000000001`, definert i `src/lib/db/local-user.ts`.
@@ -122,8 +130,9 @@ Velges automatisk ut fra miljøvariabler (`src/lib/db/index.ts`, `src/lib/auth.t
 | `DATABASE_URL` / `POSTGRES_URL` | Tilkobling til Postgres. Vercel sin Supabase-integrasjon setter `POSTGRES_URL` |
 | `DB_POOL_MAX` | Antall koblinger per instans, standard 3 |
 | `CRON_SECRET` | Kreves av `/api/cron/ingest` |
-| `NEXT_PUBLIC_REQUIRE_LOGIN` | Slår på innlogging når satt til `true` |
-| `ALLOWED_EMAILS` | E-poster som får logge inn når innlogging er på |
+| `NEXT_PUBLIC_LOGIN` | `optional` (standard med Supabase), `required` eller `off` |
+| `ADMIN_EMAILS` | Administratorer som styrer de felles kildene |
+| `ALLOWED_EMAILS` | Bare i `required`-modus: hvem som får logge inn (tom = alle) |
 | `NEXT_PUBLIC_SUPABASE_URL` / `NEXT_PUBLIC_SUPABASE_ANON_KEY` (eller `_PUBLISHABLE_KEY`) | Supabase-nøkler for innlogging |
 | `NEXT_PUBLIC_GOOGLE_LOGIN` | Viser Google-knappen |
 | `STUDENT_PORTALS_ENABLED` | Henting fra NHHS og Bindeleddet |

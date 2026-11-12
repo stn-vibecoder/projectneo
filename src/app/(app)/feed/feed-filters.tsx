@@ -15,11 +15,13 @@ export function FeedFilters({
   hasPreferredIndustries,
   count,
   watchCount,
+  signedIn,
 }: {
   cities: City[];
   hasPreferredIndustries: boolean;
   count: number;
   watchCount: number;
+  signedIn: boolean;
 }) {
   const t = useTranslations();
   const router = useRouter();
@@ -101,21 +103,23 @@ export function FeedFilters({
 
       {/* Filtre */}
       <div className="flex flex-wrap items-center gap-2 border-t border-border px-3 py-2.5 sm:px-4">
-        <button
-          type="button"
-          aria-pressed={get("watch") === "1"}
-          onClick={() => update({ watch: get("watch") === "1" ? "" : "1" })}
-          className={cn(
-            "inline-flex h-8 items-center gap-1.5 whitespace-nowrap rounded-full px-3 text-[13px] font-medium transition-colors [&_svg]:size-3.5",
-            get("watch") === "1"
-              ? "bg-gold-soft text-gold ring-1 ring-gold/40"
-              : "bg-surface-muted text-muted hover:bg-border/60 hover:text-foreground",
-          )}
-        >
-          <Star className={cn(get("watch") === "1" && "fill-current")} />
-          {t("watch.filter")}
-          <span className="num text-[11px] opacity-70">{watchCount}</span>
-        </button>
+        {signedIn && (
+          <button
+            type="button"
+            aria-pressed={get("watch") === "1"}
+            onClick={() => update({ watch: get("watch") === "1" ? "" : "1" })}
+            className={cn(
+              "inline-flex h-8 items-center gap-1.5 whitespace-nowrap rounded-full px-3 text-[13px] font-medium transition-colors [&_svg]:size-3.5",
+              get("watch") === "1"
+                ? "bg-gold-soft text-gold ring-1 ring-gold/40"
+                : "bg-surface-muted text-muted hover:bg-border/60 hover:text-foreground",
+            )}
+          >
+            <Star className={cn(get("watch") === "1" && "fill-current")} />
+            {t("watch.filter")}
+            <span className="num text-[11px] opacity-70">{watchCount}</span>
+          </button>
+        )}
         {cities.length > 1 && (
           <FilterMenu
             icon={<MapPin />}

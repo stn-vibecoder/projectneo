@@ -9,8 +9,7 @@
  *
  * Kun for testing mot en tom Postgres uten Supabase:
  *   --auth-stub     legg inn etterligningen av Supabase-auth først
- *   --local-user    opprett den faste lokale brukeren (skjer også alltid
- *                   når innlogging er av, se NEXT_PUBLIC_REQUIRE_LOGIN)
+ *   (den faste systembrukeren og standardkildene opprettes alltid)
  */
 import { readFileSync, readdirSync } from "node:fs";
 import path from "node:path";
@@ -18,8 +17,6 @@ import postgres from "postgres";
 import { PG_TYPES, connectionOptions, databaseUrl } from "../src/lib/db/url";
 
 const url = databaseUrl();
-// Uten påtvunget innlogging bruker appen én fast bruker, som må finnes i databasen.
-const loginRequired = process.env.NEXT_PUBLIC_REQUIRE_LOGIN === "true";
 const args = new Set(process.argv.slice(2));
 
 if (!url) {
@@ -80,7 +77,8 @@ async function main() {
     `);
   });
 
-  if (args.has("--local-user") || !loginRequired) {
+  // Den faste systembrukeren eier de felles kildene (og er «deg» uten innlogging).
+  {
     await sql`insert into auth.users (id, email) values (${LOCAL_USER_ID}, 'student@lokal')
               on conflict (id) do nothing`;
 

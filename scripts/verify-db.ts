@@ -185,6 +185,35 @@ async function main() {
   );
   check("B kan lage frittstående hendelse", bOwn.rows.length === 1);
 
+  console.log("\nBesøkende uten innlogging (anon)");
+  await db.exec(`set role anon; select set_config('request.jwt.claim.sub', '', false);`);
+  try {
+    const anonJobs = await db.query<{ n: number; priv: number }>(
+      `select count(*)::int as n, count(*) filter (where created_by is not null)::int as priv from jobs`,
+    );
+    check("anon ser felles stillinger", anonJobs.rows[0].n > 0, anonJobs.rows);
+    check("anon ser ikke private stillinger", anonJobs.rows[0].priv === 0, anonJobs.rows);
+    for (const table of ["applications", "watchlist", "sources", "profiles", "calendar_events"]) {
+      let hidden = false;
+      try {
+        const r = await db.query<{ n: number }>(`select count(*)::int as n from ${table}`);
+        hidden = r.rows[0].n === 0;
+      } catch {
+        hidden = true; // ingen tilgang i det hele tatt er også riktig
+      }
+      check(`anon ser ingenting i ${table}`, hidden);
+    }
+    let blocked = false;
+    try {
+      await db.query(`insert into jobs (company_id, title) select id, 'Spam' from companies limit 1`);
+    } catch {
+      blocked = true;
+    }
+    check("anon kan ikke legge inn stillinger", blocked);
+  } finally {
+    await db.exec(`reset role;`);
+  }
+
   console.log("\nWatchlist og rating");
   const comp = await db.query<{ id: string }>(`insert into companies (name) values ('Felles Bank ASA') returning id`);
   await asUser(A, () => db.query(`insert into watchlist (user_id, company_id) values ($1, $2)`, [A, comp.rows[0].id]));

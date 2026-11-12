@@ -144,6 +144,23 @@ export async function asUser<T>(userId: string, fn: (sql: Sql) => Promise<T>): P
 }
 
 /**
+ * Kjører `fn` som besøkende uten innlogging (rollen «anon»). RLS gir bare
+ * lesetilgang til felles stillinger og selskaper.
+ */
+export async function asAnon<T>(fn: (sql: Sql) => Promise<T>): Promise<T> {
+  await connection();
+  return run(async (tx) => {
+    await tx.exec(`set local role anon`);
+    return fn(wrap(tx));
+  });
+}
+
+/** Som innlogget bruker hvis det finnes en, ellers som besøkende. */
+export function asViewer<T>(user: { id: string } | null, fn: (sql: Sql) => Promise<T>): Promise<T> {
+  return user ? asUser(user.id, fn) : asAnon(fn);
+}
+
+/**
  * Kjører som tjenesterolle (uten RLS). KUN for serverjobber som henting
  * av stillinger, aldri med data styrt av brukeren uten validering.
  */

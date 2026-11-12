@@ -8,10 +8,32 @@ import { Bookmark, BookmarkCheck } from "lucide-react";
 import { Button, buttonVariants } from "@/components/ui/button";
 import { saveJobToTracker } from "@/lib/actions/applications";
 
-export function SaveJobButton({ jobId, applicationId }: { jobId: string; applicationId?: string }) {
+export function SaveJobButton({
+  jobId,
+  applicationId,
+  signedIn = true,
+}: {
+  jobId: string;
+  applicationId?: string;
+  /** Besøkende sendes til innlogging, og kommer tilbake til stillingen etterpå. */
+  signedIn?: boolean;
+}) {
   const t = useTranslations("feed");
   const [savedId, setSavedId] = useState(applicationId);
   const [pending, startTransition] = useTransition();
+
+  if (!signedIn) {
+    return (
+      <Link
+        href={`/login?next=${encodeURIComponent(`/jobs/${jobId}`)}`}
+        className={buttonVariants({ size: "sm" })}
+        title={t("signInToSave")}
+      >
+        <Bookmark />
+        {t("saveToTracker")}
+      </Link>
+    );
+  }
 
   if (savedId) {
     return (

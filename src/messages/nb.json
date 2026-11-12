@@ -50,7 +50,9 @@
     "mainNav": "Hovedmeny",
     "menu": "Meny",
     "sources": "Kilder",
-    "search": "Søk"
+    "search": "Søk",
+    "signIn": "Logg inn",
+    "signInHint": "Logg inn for å lagre stillinger, følge søknadene dine og få oversikt. Du ser alle stillingene uten å logge inn."
   },
   "auth": {
     "signInTitle": "Logg inn",
@@ -69,7 +71,9 @@
     "emailNotConfirmed": "E-posten er ikke bekreftet ennå. Sjekk innboksen din.",
     "genericError": "Innloggingen feilet. Prøv igjen.",
     "callbackError": "Innloggingslenken var ugyldig eller utløpt. Prøv igjen.",
-    "forbidden": "Denne e-postadressen har ikke tilgang. Appen er privat."
+    "forbidden": "Denne e-postadressen har ikke tilgang. Appen er privat.",
+    "why": "Logg inn for å lagre stillinger, følge søknadene dine og få din egen oversikt.",
+    "continueAsGuest": "Fortsett uten å logge inn"
   },
   "onboarding": {
     "title": "Velkommen! La oss sette opp feeden din",
@@ -132,7 +136,10 @@
     "notFetchedBody": "Du har {count, plural, one {# kilde} other {# kilder}}, men appen har ikke vært innom dem ennå. Hent nå (tar omtrent et halvt minutt), eller vent på den automatiske hentingen tidlig i morgen.",
     "fetchNow": "Hent stillinger nå",
     "noSourcesTitle": "Ingen kilder å hente fra",
-    "noSourcesBody": "Legg til karrieresider eller jobbtavler under Kilder, så dukker stillingene opp her."
+    "noSourcesBody": "Legg til karrieresider eller jobbtavler under Kilder, så dukker stillingene opp her.",
+    "signInToSave": "Logg inn for å lagre stillingen i din egen tracker",
+    "signInToPersonalize": "Logg inn for å velge byer og bransjer",
+    "notFetchedGuest": "Stillingene hentes automatisk hver morgen. Kom tilbake litt senere."
   },
   "job": {
     "newTitle": "Legg til stilling manuelt",

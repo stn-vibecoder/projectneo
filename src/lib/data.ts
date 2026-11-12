@@ -1,7 +1,7 @@
 import "server-only";
 import { cache } from "react";
-import { requireUser } from "@/lib/auth";
-import { asUser, pgArray } from "@/lib/db";
+import { getCurrentUser, requireSourceAdmin, requireUser, type CurrentUser } from "@/lib/auth";
+import { asService, asUser, asViewer, pgArray } from "@/lib/db";
 import { TIME_ZONE } from "@/i18n/request";
 import type { City, Industry, Period, StatusCategory } from "@/lib/domain";
 import type { CalendarAppRow, CalendarEventRow } from "@/lib/tracker/calendar";
@@ -21,6 +21,25 @@ import type {
 export function todayInOslo(now = new Date()): string {
   return new Intl.DateTimeFormat("en-CA", { timeZone: TIME_ZONE }).format(now);
 }
+
+/** Standardvalg for besøkende som ikke er logget inn: alle byer, økonomibransjene. */
+export const GUEST_PREFS = {
+  cities: ["oslo", "stockholm", "new_york", "london"] as City[],
+  industries: ["finance", "consulting", "audit"] as Industry[],
+};
+
+/**
+ * Den som ser på siden: innlogget bruker med profil og preferanser, eller
+ * en besøkende (user = null) med standardvalg. Brukes av de åpne sidene.
+ */
+export const getViewer = cache(
+  async (): Promise<{ user: CurrentUser | null; profile: Profile | null; cities: City[]; industries: Industry[] }> => {
+    const user = await getCurrentUser();
+    if (!user) return { user: null, profile: null, ...GUEST_PREFS };
+    const { profile, prefs } = await getProfile();
+    return { user, profile, cities: prefs.cities, industries: prefs.industries };
+  },
+);
 
 export const getProfile = cache(async () => {
   const user = await requireUser();
@@ -110,8 +129,9 @@ export type SourceRow = {
 };
 
 /** Brukerens kilder med antall åpne stillinger fra hver. */
+/** De felles kildene (bare for administratorer). */
 export const getSources = cache(async () => {
-  const user = await requireUser();
+  const user = await requireSourceAdmin();
   return asUser(user.id, (sql) =>
     sql.rows<SourceRow>(
       `select to_jsonb(s) - 'state' || jsonb_build_object('open_jobs', (
@@ -192,27 +212,30 @@ export async function getApplication(id: string) {
 
 /** Én stilling (felles eller egen), eller null. */
 export async function getJob(id: string) {
-  const user = await requireUser();
-  return asUser(user.id, async (sql) => {
+  const user = await getCurrentUser();
+  // Kildenavnene er offentlige (de vises ved stillingen), men kildene eies av systembrukeren.
+  const sources = await asService((sql) =>
+    sql.query<{ name: string }>(
+      `select s.name from job_sources js join sources s on s.id = js.source_id where js.job_id = $1 and js.active`,
+      [id],
+    ),
+  );
+  return asViewer(user, async (sql) => {
     const job = await sql.row<JobWithCompany>(
       `select to_jsonb(j) || jsonb_build_object('company', to_jsonb(c)) as row
          from jobs j join companies c on c.id = j.company_id where j.id = $1`,
       [id],
     );
     if (!job) return null;
-    const [app] = await sql.query<{ id: string }>(`select id from applications where job_id = $1`, [id]);
-    const [watch] = await sql.query<{ company_id: string }>(`select company_id from watchlist where company_id = $1`, [
-      job.company_id,
-    ]);
+    const [app] = user ? await sql.query<{ id: string }>(`select id from applications where job_id = $1`, [id]) : [];
+    const [watch] = user
+      ? await sql.query<{ company_id: string }>(`select company_id from watchlist where company_id = $1`, [job.company_id])
+      : [];
     const others = await sql.rows<Job>(
       `select to_jsonb(j) as row from jobs j
         where j.company_id = $1 and j.id <> $2 and j.status = 'open'
         order by j.deadline asc nulls last limit 8`,
       [job.company_id, id],
-    );
-    const sources = await sql.query<{ name: string }>(
-      `select s.name from job_sources js join sources s on s.id = js.source_id where js.job_id = $1 and js.active`,
-      [id],
     );
     return { job, applicationId: app?.id ?? null, watched: Boolean(watch), others, sources: sources.map((s) => s.name) };
   });
@@ -220,7 +243,8 @@ export async function getJob(id: string) {
 
 /** Id-ene til selskapene brukeren følger. */
 export const getWatchedCompanyIds = cache(async () => {
-  const user = await requireUser();
+  const user = await getCurrentUser();
+  if (!user) return new Set<string>();
   const rows = await asUser(user.id, (sql) => sql.query<{ company_id: string }>(`select company_id from watchlist`));
   return new Set(rows.map((r) => r.company_id));
 });
@@ -272,7 +296,7 @@ export type FeedFilters = {
 };
 
 export async function getFeed(filters: FeedFilters, cities: City[], preferredIndustries: Industry[] = []) {
-  const user = await requireUser();
+  const user = await getCurrentUser();
   const today = todayInOslo();
   const selectedCities = filters.city ? [filters.city] : cities;
   if (selectedCities.length === 0) {
@@ -294,7 +318,7 @@ export async function getFeed(filters: FeedFilters, cities: City[], preferredInd
     where.push(`(j.industry = any(${p(pgArray(preferredIndustries))}::industry[]) or j.industry is null)`);
   }
   if (filters.period) where.push(`j.period = ${p(filters.period)}::internship_period`);
-  if (filters.watch) where.push(`j.company_id in (select company_id from watchlist)`);
+  if (filters.watch && user) where.push(`j.company_id in (select company_id from watchlist)`);
 
   if (filters.deadline === "none") {
     where.push(`j.deadline is null`);
@@ -315,7 +339,7 @@ export async function getFeed(filters: FeedFilters, cities: City[], preferredInd
   const order =
     filters.sort === "newest" ? `j.first_seen desc` : `j.deadline asc nulls last, j.first_seen desc`;
 
-  const { jobs, saved } = await asUser(user.id, async (sql) => ({
+  const { jobs, saved } = await asViewer(user, async (sql) => ({
     jobs: await sql.rows<JobWithCompany>(
       `select to_jsonb(j) || jsonb_build_object('company', to_jsonb(c)) as row
          from jobs j join companies c on c.id = j.company_id
@@ -324,7 +348,7 @@ export async function getFeed(filters: FeedFilters, cities: City[], preferredInd
         limit 500`,
       params,
     ),
-    saved: await sql.query<{ id: string; job_id: string }>(`select id, job_id from applications`),
+    saved: user ? await sql.query<{ id: string; job_id: string }>(`select id, job_id from applications`) : [],
   }));
 
   const sorted =
@@ -332,3 +356,17 @@ export async function getFeed(filters: FeedFilters, cities: City[], preferredInd
 
   return { jobs: sorted, savedByJob: new Map(saved.map((s) => [s.job_id, s.id])), today };
 }
+
+/**
+ * Status for hentingen, uten å vise selve kildene: hvor mange felles kilder
+ * som hentes automatisk, og om noen av dem har vært hentet.
+ */
+export const getFetchStatus = cache(async () => {
+  const [row] = await asService((sql) =>
+    sql.query<{ total: number; fetched: number }>(
+      `select count(*)::int as total, count(last_run_at)::int as fetched
+         from sources where enabled and type <> 'manual'`,
+    ),
+  );
+  return row ?? { total: 0, fetched: 0 };
+});

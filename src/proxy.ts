@@ -1,14 +1,15 @@
 import { NextResponse, type NextRequest } from "next/server";
-import { isLoginEnabled } from "@/lib/env";
+import { authMode } from "@/lib/env";
 import { supabaseProxy } from "@/lib/supabase/proxy";
 
 /**
- * Uten innlogging (standard): rett inn i appen.
- * Med innlogging (NEXT_PUBLIC_REQUIRE_LOGIN=true): fornyer sesjonen og
- * sender ikke-innloggede til /login.
+ * Lokalt (ingen innlogging): rett inn i appen.
+ * Med innlogging («optional» eller «required»): fornyer sesjonen og sender
+ * ikke-innloggede til /login på sider som krever det (se isPublicPath).
  */
 export function proxy(request: NextRequest) {
-  if (isLoginEnabled()) return supabaseProxy(request);
+  const mode = authMode();
+  if (mode !== "local") return supabaseProxy(request, mode);
 
   const { pathname } = request.nextUrl;
   if (pathname === "/" || pathname === "/login" || pathname.startsWith("/auth/")) {

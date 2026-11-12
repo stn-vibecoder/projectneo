@@ -162,17 +162,29 @@ en database på nett for å huske dataene. Den lages inne i Vercel:
 Det som skjer på Vercel:
 
 - Alle kilder hentes **én gang i døgnet** (Vercel Hobby tillater ikke oftere).
-  Trykk «Oppdater alle» under Kilder for å hente med en gang.
-- Siden er skjult for søkemotorer (`noindex`), men **alle med lenken kommer inn**
-  og kan endre dataene. Ikke del lenken offentlig.
-- Lokalt (`npm run dev`) brukes fortsatt databasen på Macen. Den er ikke koblet
-  til den på nett.
+- Siden er skjult for søkemotorer (`noindex`).
+- Lokalt (`npm run dev`) brukes fortsatt databasen på Macen, uten innlogging.
 
-**Slå på innlogging senere:** sett `NEXT_PUBLIC_REQUIRE_LOGIN=true`,
-`ALLOWED_EMAILS=din@epost.no` og (hvis ikke Vercel har lagt dem inn)
-`NEXT_PUBLIC_SUPABASE_URL` og `NEXT_PUBLIC_SUPABASE_ANON_KEY`, og bygg på nytt.
-I Supabase: *Authentication → URL Configuration* → sett **Site URL** til
-Vercel-lenken. Bare e-postene på listen kan lage konto og logge inn.
+### Brukere og innlogging
+
+Nettsiden er åpen: **alle kan se stillingene**, men må **logge inn** (Google eller
+e-post) for å lagre stillinger og bruke tracker, kalender og Oversikt. Hver bruker
+har sine egne, private data. De felles kildene styres bare av administratorene.
+
+Oppsett i Vercel (*Settings → Environment Variables*), og bygg på nytt etterpå:
+
+| Variabel | Verdi |
+|---|---|
+| `ADMIN_EMAILS` | E-postene til dere som skal styre Kilder, kommaseparert |
+| `NEXT_PUBLIC_GOOGLE_LOGIN` | `true` når Google er satt opp (se under) |
+| `NEXT_PUBLIC_LOGIN` | Valgfri: `optional` (standard), `required` eller `off` |
+
+I Supabase (*Authentication → URL Configuration*): sett **Site URL** til
+nettsidens adresse og legg `https://<adressen>/auth/callback` under **Redirect URLs**.
+
+**Google:** lag en OAuth-klient i Google Cloud Console (type «Web application»)
+med redirect-URI `https://<prosjekt>.supabase.co/auth/v1/callback`. Lim inn
+Client ID og Client Secret i Supabase → *Authentication → Sign In / Providers → Google*.
 
 ## Kjente forhold
 

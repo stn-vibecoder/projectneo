@@ -9,7 +9,8 @@ import { deadlineProfile } from "@/lib/tracker/series";
 import { buttonVariants } from "@/components/ui/button";
 import { JobMeta } from "@/components/job-meta";
 import { SinceText } from "@/components/dates";
-import { getFeed, getProfile, getSources, getWatchedCompanyIds, type FeedFilters as Filters } from "@/lib/data";
+import { getFeed, getFetchStatus, getViewer, getWatchedCompanyIds, type FeedFilters as Filters } from "@/lib/data";
+import { isAdmin } from "@/lib/auth";
 import { RunAllButton } from "../sources/source-controls";
 import { WatchButton } from "@/components/watch-button";
 import { daysSince } from "@/lib/tracker/dates";
@@ -44,8 +45,10 @@ function parseFilters(sp: Record<string, string | string[] | undefined>, allowed
  */
 async function EmptyFeed({ children }: { children: React.ReactNode }) {
   const t = await getTranslations();
-  const sources = (await getSources()).filter((s) => s.type !== "manual" && s.enabled);
-  if (sources.length === 0) {
+  const [{ user }, status] = await Promise.all([getViewer(), getFetchStatus()]);
+  const admin = isAdmin(user);
+  if (status.total === 0) {
+    if (!admin) return children;
     return (
       <EmptyState icon={<Radar />} title={t("feed.noSourcesTitle")} body={t("feed.noSourcesBody")}>
         <Link href="/sources" className={buttonVariants()}>
@@ -55,14 +58,14 @@ async function EmptyFeed({ children }: { children: React.ReactNode }) {
       </EmptyState>
     );
   }
-  if (sources.every((s) => !s.last_run_at)) {
+  if (status.fetched === 0) {
     return (
       <EmptyState
         icon={<CloudDownload />}
         title={t("feed.notFetchedTitle")}
-        body={t("feed.notFetchedBody", { count: sources.length })}
+        body={admin ? t("feed.notFetchedBody", { count: status.total }) : t("feed.notFetchedGuest")}
       >
-        <RunAllButton label={t("feed.fetchNow")} />
+        {admin && <RunAllButton label={t("feed.fetchNow")} />}
       </EmptyState>
     );
   }
@@ -71,7 +74,9 @@ async function EmptyFeed({ children }: { children: React.ReactNode }) {
 
 async function FeedContent({ searchParams }: PageProps<"/feed">) {
   const t = await getTranslations();
-  const { prefs } = await getProfile();
+  const viewer = await getViewer();
+  const signedIn = Boolean(viewer.user);
+  const prefs = { cities: viewer.cities, industries: viewer.industries };
   const filters = parseFilters(await searchParams, prefs.cities);
   const [{ jobs, savedByJob, today }, watchedIds] = await Promise.all([
     getFeed(filters, prefs.cities, prefs.industries),
@@ -109,23 +114,29 @@ async function FeedContent({ searchParams }: PageProps<"/feed">) {
                   {t(`enums.city.${c}`)}
                 </span>
               ))}
-              <Link href="/settings" className="ml-1 text-xs font-medium text-accent hover:underline">
-                {t("feed.editCities")}
+              <Link
+                href={signedIn ? "/settings" : "/login?next=/settings"}
+                className="ml-1 text-xs font-medium text-accent hover:underline"
+              >
+                {signedIn ? t("feed.editCities") : t("feed.signInToPersonalize")}
               </Link>
             </span>
           </>
         }
         actions={
           // På mobil finnes +-knappen allerede i toppmenyen.
-          <Link href="/jobs/new" className={cn(buttonVariants({ variant: "secondary" }), "max-sm:hidden")}>
-            <Plus />
-            {t("nav.addJob")}
-          </Link>
+          signedIn && (
+            <Link href="/jobs/new" className={cn(buttonVariants({ variant: "secondary" }), "max-sm:hidden")}>
+              <Plus />
+              {t("nav.addJob")}
+            </Link>
+          )
         }
       />
       <FeedFilters
         cities={prefs.cities}
         hasPreferredIndustries={prefs.industries.length > 0}
+        signedIn={signedIn}
         count={jobs.length}
         watchCount={watchedIds.size}
       />
@@ -196,7 +207,7 @@ async function FeedContent({ searchParams }: PageProps<"/feed">) {
                         </Link>
                       </h2>
                     </div>
-                    {!job.company.created_by && (
+                    {signedIn && !job.company.created_by && (
                       <WatchButton
                         companyId={job.company_id}
                         companyName={job.company.name}
@@ -231,7 +242,7 @@ async function FeedContent({ searchParams }: PageProps<"/feed">) {
                           <ExternalLink />
                         </a>
                       )}
-                      <SaveJobButton jobId={job.id} applicationId={savedByJob.get(job.id)} />
+                      <SaveJobButton jobId={job.id} applicationId={savedByJob.get(job.id)} signedIn={signedIn} />
                     </div>
                   </div>
                 </Card>

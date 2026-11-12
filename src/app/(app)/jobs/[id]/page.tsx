@@ -9,6 +9,7 @@ import { CityIcon } from "@/components/city-icon";
 import { Deadline } from "@/components/dates";
 import { WatchButton } from "@/components/watch-button";
 import { getJob, todayInOslo } from "@/lib/data";
+import { getCurrentUser } from "@/lib/auth";
 import { cn, safeUrl } from "@/lib/utils";
 import { SaveJobButton } from "../../feed/save-job-button";
 
@@ -19,7 +20,8 @@ async function JobContent({ params }: PageProps<"/jobs/[id]">) {
   if (!/^[0-9a-f-]{36}$/i.test(id)) notFound();
   const t = await getTranslations();
   const format = await getFormatter();
-  const data = await getJob(id);
+  const [data, user] = await Promise.all([getJob(id), getCurrentUser()]);
+  const signedIn = Boolean(user);
   if (!data) notFound();
   const { job, applicationId, watched, others, sources } = data;
   const today = todayInOslo();
@@ -66,7 +68,7 @@ async function JobContent({ params }: PageProps<"/jobs/[id]">) {
             <div className="min-w-0">
               <p className="eyebrow flex items-center gap-1 text-gold">
                 {job.company.name}
-                {!job.company.created_by && (
+                {signedIn && !job.company.created_by && (
                   <WatchButton companyId={job.company_id} companyName={job.company.name} watched={watched} className="-my-1" />
                 )}
               </p>
@@ -87,7 +89,7 @@ async function JobContent({ params }: PageProps<"/jobs/[id]">) {
                 {t("jobPage.open")}
               </Link>
             ) : (
-              <SaveJobButton jobId={job.id} />
+              <SaveJobButton jobId={job.id} signedIn={signedIn} />
             )}
           </div>
         </div>

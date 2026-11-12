@@ -1,0 +1,1210 @@
+[
+  {
+    "type": "teamtailor",
+    "identifier": "https://abgsc.teamtailor.com",
+    "name": "ABG Sundal Collier",
+    "url": "https://abgsc.teamtailor.com/jobs",
+    "industry": "finance",
+    "enabled": true,
+    "notes": "Karri ereside: https://www.abgsc.com/working-at-abgsc/",
+    "sector": "Investment banking",
+    "state": null
+  },
+  {
+    "type": "jobtech",
+    "identifier": "default",
+    "name": "Arbetsförmedlingen – Stockholm",
+    "url": "https://arbetsformedlingen.se/platsbanken",
+    "industry": null,
+    "enabled": true,
+    "notes": null,
+    "sector": null,
+    "state": null
+  },
+  {
+    "type": "bindeleddet",
+    "identifier": "default",
+    "name": "Bindeleddet – stillinger for Indøk (NTNU)",
+    "url": "https://bindeleddet.no/jobs/",
+    "industry": null,
+    "enabled": true,
+    "notes": null,
+    "sector": null,
+    "state": null
+  },
+  {
+    "type": "greenhouse",
+    "identifier": "eqtpartners",
+    "name": "EQT",
+    "url": "https://job-boards.eu.greenhouse.io/eqtpartners",
+    "industry": "finance",
+    "enabled": true,
+    "notes": null,
+    "sector": "Private equity",
+    "state": null
+  },
+  {
+    "type": "bamboohr",
+    "identifier": "fsncapitalpartners",
+    "name": "FSN Capital",
+    "url": "https://fsncapitalpartners.bamboohr.com/careers",
+    "industry": "finance",
+    "enabled": true,
+    "notes": null,
+    "sector": "Private equity",
+    "state": null
+  },
+  {
+    "type": "teamtailor",
+    "identifier": "https://investor.teamtailor.com",
+    "name": "Investor AB",
+    "url": "https://www.investorab.com/careers/",
+    "industry": "finance",
+    "enabled": true,
+    "notes": null,
+    "sector": "Kapitalforvaltning",
+    "state": null
+  },
+  {
+    "type": "greenhouse",
+    "identifier": "janestreet",
+    "name": "Jane Street",
+    "url": "https://www.janestreet.com/join-jane-street/",
+    "industry": "finance",
+    "enabled": true,
+    "notes": null,
+    "sector": "Hedgefond/trading",
+    "state": null
+  },
+  {
+    "type": "nhhs",
+    "identifier": "default",
+    "name": "NHHS – stillinger for NHH-studenter",
+    "url": "https://www.nu.nhhs.no/jobs/",
+    "industry": null,
+    "enabled": true,
+    "notes": "Samler internships fra bl.a. ABGSC, Pareto, Clarksons, Arkwright",
+    "sector": "Jobbportal",
+    "state": null
+  },
+  {
+    "type": "teamtailor",
+    "identifier": "https://nordea.teamtailor.com",
+    "name": "Nordea",
+    "url": "https://careers.nordea.com/",
+    "industry": "finance",
+    "enabled": true,
+    "notes": "Studentside: https://www.nordea.com/no/karriere/studenter-og-graduates/internships-og-jobber-for-studenter",
+    "sector": "Bank",
+    "state": null
+  },
+  {
+    "type": "teamtailor",
+    "identifier": "https://nordiccapital.teamtailor.com",
+    "name": "Nordic Capital",
+    "url": "https://www.nordiccapital.com/careers/",
+    "industry": "finance",
+    "enabled": true,
+    "notes": null,
+    "sector": "Private equity",
+    "state": null
+  },
+  {
+    "type": "teamtailor",
+    "identifier": "https://paretosecurities.teamtailor.com",
+    "name": "Pareto Securities",
+    "url": "https://paretosecurities.teamtailor.com/jobs",
+    "industry": "finance",
+    "enabled": true,
+    "notes": "Karriereside: https://www.paretosec.com/our-firm/career",
+    "sector": "Investment banking",
+    "state": null
+  },
+  {
+    "type": "greenhouse",
+    "identifier": "point72",
+    "name": "Point72",
+    "url": "https://careers.point72.com/",
+    "industry": "finance",
+    "enabled": true,
+    "notes": null,
+    "sector": "Hedgefond/trading",
+    "state": null
+  },
+  {
+    "type": "bamboohr",
+    "identifier": "summaequity",
+    "name": "Summa Equity",
+    "url": "https://summaequity.com/careers",
+    "industry": "finance",
+    "enabled": true,
+    "notes": null,
+    "sector": "Private equity",
+    "state": null
+  },
+  {
+    "type": "manual",
+    "identifier": "https://www.accenture.com/no-en/careers",
+    "name": "Accenture",
+    "url": "https://www.accenture.com/no-en/careers",
+    "industry": "consulting",
+    "enabled": true,
+    "notes": null,
+    "sector": "Consulting",
+    "state": {
+      "cities": "Oslo; Stockholm; London; New York",
+      "reason": "workday",
+      "system": "Workday"
+    }
+  },
+  {
+    "type": "manual",
+    "identifier": "https://www.altor.com/",
+    "name": "Altor Equity Partners",
+    "url": "https://www.altor.com/",
+    "industry": "finance",
+    "enabled": true,
+    "notes": "Sjekk forsiden for karrierelenke",
+    "sector": "Private equity",
+    "state": {
+      "cities": "Stockholm; Oslo",
+      "reason": "none",
+      "system": null
+    }
+  },
+  {
+    "type": "manual",
+    "identifier": "https://www.apollo.com/careers",
+    "name": "Apollo",
+    "url": "https://www.apollo.com/careers",
+    "industry": "finance",
+    "enabled": true,
+    "notes": null,
+    "sector": "Private equity",
+    "state": {
+      "cities": "London; New York",
+      "reason": "workday",
+      "system": "Workday"
+    }
+  },
+  {
+    "type": "manual",
+    "identifier": "https://www.arctic.com/career",
+    "name": "Arctic Securities",
+    "url": "https://www.arctic.com/career",
+    "industry": "finance",
+    "enabled": true,
+    "notes": "Internships og graduate-stillinger legges under /career/open-position/",
+    "sector": "Investment banking",
+    "state": {
+      "cities": "Oslo; Stockholm; New York",
+      "reason": "none",
+      "system": null
+    }
+  },
+  {
+    "type": "manual",
+    "identifier": "https://www.arkwright.no/",
+    "name": "Arkwright",
+    "url": "https://www.arkwright.no/",
+    "industry": "consulting",
+    "enabled": true,
+    "notes": "Internships/Junior Associate lyses ut via Jobylon og NHHS",
+    "sector": "Consulting",
+    "state": {
+      "cities": "Oslo; Stockholm; London",
+      "reason": "unsupported",
+      "system": "Jobylon"
+    }
+  },
+  {
+    "type": "manual",
+    "identifier": "https://www.adlittle.com/en/careers",
+    "name": "Arthur D. Little",
+    "url": "https://www.adlittle.com/en/careers",
+    "industry": "consulting",
+    "enabled": true,
+    "notes": null,
+    "sector": "Consulting",
+    "state": {
+      "cities": "Oslo; Stockholm; London; New York",
+      "reason": "none",
+      "system": null
+    }
+  },
+  {
+    "type": "manual",
+    "identifier": "https://www.bdo.no/nb-no/karriere",
+    "name": "BDO Norge",
+    "url": "https://www.bdo.no/nb-no/karriere",
+    "industry": "audit",
+    "enabled": true,
+    "notes": null,
+    "sector": "Revisjon",
+    "state": {
+      "cities": "Oslo",
+      "reason": "none",
+      "system": null
+    }
+  },
+  {
+    "type": "manual",
+    "identifier": "https://www.bain.com/careers/find-a-role/",
+    "name": "Bain & Company",
+    "url": "https://www.bain.com/careers/find-a-role/",
+    "industry": "consulting",
+    "enabled": true,
+    "notes": null,
+    "sector": "Consulting",
+    "state": {
+      "cities": "Oslo; Stockholm; London; New York",
+      "reason": "none",
+      "system": null
+    }
+  },
+  {
+    "type": "manual",
+    "identifier": "https://campus.bankofamerica.com/",
+    "name": "Bank of America",
+    "url": "https://campus.bankofamerica.com/",
+    "industry": "finance",
+    "enabled": true,
+    "notes": null,
+    "sector": "Investment banking",
+    "state": {
+      "cities": "London; New York",
+      "reason": "workday",
+      "system": "Workday"
+    }
+  },
+  {
+    "type": "manual",
+    "identifier": "https://search.jobs.barclays/early-careers",
+    "name": "Barclays",
+    "url": "https://search.jobs.barclays/early-careers",
+    "industry": "finance",
+    "enabled": true,
+    "notes": null,
+    "sector": "Investment banking",
+    "state": {
+      "cities": "London; New York",
+      "reason": "workday",
+      "system": "Workday"
+    }
+  },
+  {
+    "type": "manual",
+    "identifier": "https://careers.blackrock.com/early-careers/",
+    "name": "BlackRock",
+    "url": "https://careers.blackrock.com/early-careers/",
+    "industry": "finance",
+    "enabled": true,
+    "notes": null,
+    "sector": "Kapitalforvaltning",
+    "state": {
+      "cities": "London; New York; Stockholm",
+      "reason": "none",
+      "system": null
+    }
+  },
+  {
+    "type": "manual",
+    "identifier": "https://www.blackstone.com/careers/",
+    "name": "Blackstone",
+    "url": "https://www.blackstone.com/careers/",
+    "industry": "finance",
+    "enabled": true,
+    "notes": null,
+    "sector": "Private equity",
+    "state": {
+      "cities": "London; New York",
+      "reason": "unreachable",
+      "system": null
+    }
+  },
+  {
+    "type": "manual",
+    "identifier": "https://careers.bcg.com/students",
+    "name": "Boston Consulting Group",
+    "url": "https://careers.bcg.com/students",
+    "industry": "consulting",
+    "enabled": true,
+    "notes": null,
+    "sector": "Consulting",
+    "state": {
+      "cities": "Oslo; Stockholm; London; New York",
+      "reason": "unsupported",
+      "system": "Eightfold"
+    }
+  },
+  {
+    "type": "manual",
+    "identifier": "https://www.carlyle.com/careers",
+    "name": "Carlyle",
+    "url": "https://www.carlyle.com/careers",
+    "industry": "finance",
+    "enabled": true,
+    "notes": null,
+    "sector": "Private equity",
+    "state": {
+      "cities": "London; New York",
+      "reason": "unreachable",
+      "system": null
+    }
+  },
+  {
+    "type": "manual",
+    "identifier": "https://www.centerviewpartners.com/careers",
+    "name": "Centerview Partners",
+    "url": "https://www.centerviewpartners.com/careers",
+    "industry": "finance",
+    "enabled": true,
+    "notes": null,
+    "sector": "Investment banking",
+    "state": {
+      "cities": "London; New York",
+      "reason": "none",
+      "system": null
+    }
+  },
+  {
+    "type": "manual",
+    "identifier": "https://www.citadel.com/careers/",
+    "name": "Citadel",
+    "url": "https://www.citadel.com/careers/",
+    "industry": "finance",
+    "enabled": true,
+    "notes": null,
+    "sector": "Hedgefond/trading",
+    "state": {
+      "cities": "London; New York",
+      "reason": "unreachable",
+      "system": null
+    }
+  },
+  {
+    "type": "manual",
+    "identifier": "https://jobs.citi.com/",
+    "name": "Citi",
+    "url": "https://jobs.citi.com/",
+    "industry": "finance",
+    "enabled": true,
+    "notes": null,
+    "sector": "Investment banking",
+    "state": {
+      "cities": "London; New York",
+      "reason": "workday",
+      "system": "Workday"
+    }
+  },
+  {
+    "type": "manual",
+    "identifier": "https://www.clarksons.com/home/careers/early-careers/",
+    "name": "Clarksons Securities",
+    "url": "https://www.clarksons.com/home/careers/early-careers/",
+    "industry": "finance",
+    "enabled": true,
+    "notes": "Stillingsdatabase: https://careers.clarksons.com",
+    "sector": "Investment banking",
+    "state": {
+      "cities": "Oslo; London; New York",
+      "reason": "unsupported",
+      "system": "SAP SuccessFactors"
+    }
+  },
+  {
+    "type": "manual",
+    "identifier": "https://www.dnb.no/om-oss/jobb-og-karriere/studenter-og-nyutdannede",
+    "name": "DNB",
+    "url": "https://www.dnb.no/om-oss/jobb-og-karriere/studenter-og-nyutdannede",
+    "industry": "finance",
+    "enabled": true,
+    "notes": "Trainee, internships og deltid",
+    "sector": "Bank",
+    "state": {
+      "cities": "Oslo; Stockholm; London; New York",
+      "reason": "none",
+      "system": null
+    }
+  },
+  {
+    "type": "manual",
+    "identifier": "https://www.dnb.no/om-oss/jobb-og-karriere/om-dnb-markets",
+    "name": "DNB Carnegie",
+    "url": "https://www.dnb.no/om-oss/jobb-og-karriere/om-dnb-markets",
+    "industry": "finance",
+    "enabled": true,
+    "notes": "Internship (IBD, FICC, Research) og graduate/IBD Analyst",
+    "sector": "Investment banking",
+    "state": {
+      "cities": "Oslo; Stockholm; London; New York",
+      "reason": "none",
+      "system": null
+    }
+  },
+  {
+    "type": "manual",
+    "identifier": "https://danskebank.com/careers",
+    "name": "Danske Bank",
+    "url": "https://danskebank.com/careers",
+    "industry": "finance",
+    "enabled": true,
+    "notes": null,
+    "sector": "Bank",
+    "state": {
+      "cities": "Oslo; Stockholm; London",
+      "reason": "unsupported",
+      "system": "Oracle"
+    }
+  },
+  {
+    "type": "manual",
+    "identifier": "https://www.deloitte.com/no/no/careers.html",
+    "name": "Deloitte Norge",
+    "url": "https://www.deloitte.com/no/no/careers.html",
+    "industry": "audit",
+    "enabled": true,
+    "notes": "Internships i bl.a. Strategy & Transactions, Monitor Deloitte, RRF",
+    "sector": "Revisjon",
+    "state": {
+      "cities": "Oslo",
+      "reason": "unsupported",
+      "system": "SmartRecruiters"
+    }
+  },
+  {
+    "type": "manual",
+    "identifier": "https://www.deloitte.com/se/sv/careers.html",
+    "name": "Deloitte Sverige",
+    "url": "https://www.deloitte.com/se/sv/careers.html",
+    "industry": "audit",
+    "enabled": true,
+    "notes": null,
+    "sector": "Revisjon",
+    "state": {
+      "cities": "Stockholm",
+      "reason": "unsupported",
+      "system": "SmartRecruiters"
+    }
+  },
+  {
+    "type": "manual",
+    "identifier": "https://www.deloitte.com/uk/en/careers/students.html",
+    "name": "Deloitte UK",
+    "url": "https://www.deloitte.com/uk/en/careers/students.html",
+    "industry": "audit",
+    "enabled": true,
+    "notes": null,
+    "sector": "Revisjon",
+    "state": {
+      "cities": "London",
+      "reason": "unreachable",
+      "system": null
+    }
+  },
+  {
+    "type": "manual",
+    "identifier": "https://www.deloitte.com/us/en/careers/students.html",
+    "name": "Deloitte US",
+    "url": "https://www.deloitte.com/us/en/careers/students.html",
+    "industry": "audit",
+    "enabled": true,
+    "notes": null,
+    "sector": "Revisjon",
+    "state": {
+      "cities": "New York",
+      "reason": "none",
+      "system": null
+    }
+  },
+  {
+    "type": "manual",
+    "identifier": "https://careers.db.com/students-graduates",
+    "name": "Deutsche Bank",
+    "url": "https://careers.db.com/students-graduates",
+    "industry": "finance",
+    "enabled": true,
+    "notes": null,
+    "sector": "Investment banking",
+    "state": {
+      "cities": "London; New York",
+      "reason": "none",
+      "system": null
+    }
+  },
+  {
+    "type": "manual",
+    "identifier": "https://www.ey.com/no_no/careers/early-careers",
+    "name": "EY Norge",
+    "url": "https://www.ey.com/no_no/careers/early-careers",
+    "industry": "audit",
+    "enabled": true,
+    "notes": "Internships: https://www.ey.com/no_no/careers/internships-dine-muligheter-som-student",
+    "sector": "Revisjon",
+    "state": {
+      "cities": "Oslo",
+      "reason": "none",
+      "system": null
+    }
+  },
+  {
+    "type": "manual",
+    "identifier": "https://www.ey.com/sv_se/careers/students",
+    "name": "EY Sverige",
+    "url": "https://www.ey.com/sv_se/careers/students",
+    "industry": "audit",
+    "enabled": true,
+    "notes": null,
+    "sector": "Revisjon",
+    "state": {
+      "cities": "Stockholm",
+      "reason": "unreachable",
+      "system": null
+    }
+  },
+  {
+    "type": "manual",
+    "identifier": "https://www.ey.com/en_uk/careers/students",
+    "name": "EY UK",
+    "url": "https://www.ey.com/en_uk/careers/students",
+    "industry": "audit",
+    "enabled": true,
+    "notes": null,
+    "sector": "Revisjon",
+    "state": {
+      "cities": "London",
+      "reason": "none",
+      "system": null
+    }
+  },
+  {
+    "type": "manual",
+    "identifier": "https://www.ey.com/en_us/careers/students",
+    "name": "EY US",
+    "url": "https://www.ey.com/en_us/careers/students",
+    "industry": "audit",
+    "enabled": true,
+    "notes": null,
+    "sector": "Revisjon",
+    "state": {
+      "cities": "New York",
+      "reason": "unreachable",
+      "system": null
+    }
+  },
+  {
+    "type": "manual",
+    "identifier": "https://www.evercore.com/careers/",
+    "name": "Evercore",
+    "url": "https://www.evercore.com/careers/",
+    "industry": "finance",
+    "enabled": true,
+    "notes": null,
+    "sector": "Investment banking",
+    "state": {
+      "cities": "London; New York",
+      "reason": "none",
+      "system": null
+    }
+  },
+  {
+    "type": "manual",
+    "identifier": "https://www.finn.no/job/search",
+    "name": "FINN jobb",
+    "url": "https://www.finn.no/job/search",
+    "industry": null,
+    "enabled": true,
+    "notes": null,
+    "sector": "Jobbportal",
+    "state": {
+      "cities": "Oslo",
+      "reason": "unsupported",
+      "system": "FINN (vilkårene tillater ikke automatisk henting)"
+    }
+  },
+  {
+    "type": "manual",
+    "identifier": "https://www.fearnleysecurities.com/",
+    "name": "Fearnley Securities",
+    "url": "https://www.fearnleysecurities.com/",
+    "industry": "finance",
+    "enabled": true,
+    "notes": "Ingen karriereside funnet – stillinger lyses ut på Finn.no",
+    "sector": "Investment banking",
+    "state": {
+      "cities": "Oslo; London; New York",
+      "reason": "none",
+      "system": null
+    }
+  },
+  {
+    "type": "manual",
+    "identifier": "https://www.folketrygdfondet.no/karriere",
+    "name": "Folketrygdfondet",
+    "url": "https://www.folketrygdfondet.no/karriere",
+    "industry": "finance",
+    "enabled": true,
+    "notes": null,
+    "sector": "Kapitalforvaltning",
+    "state": {
+      "cities": "Oslo",
+      "reason": "unreachable",
+      "system": null
+    }
+  },
+  {
+    "type": "manual",
+    "identifier": "https://www.goldmansachs.com/careers/students",
+    "name": "Goldman Sachs",
+    "url": "https://www.goldmansachs.com/careers/students",
+    "industry": "finance",
+    "enabled": true,
+    "notes": null,
+    "sector": "Investment banking",
+    "state": {
+      "cities": "London; New York",
+      "reason": "unsupported",
+      "system": "Avature"
+    }
+  },
+  {
+    "type": "manual",
+    "identifier": "https://www.grantthornton.no/karriere/",
+    "name": "Grant Thornton Norge",
+    "url": "https://www.grantthornton.no/karriere/",
+    "industry": "audit",
+    "enabled": true,
+    "notes": null,
+    "sector": "Revisjon",
+    "state": {
+      "cities": "Oslo",
+      "reason": "none",
+      "system": null
+    }
+  },
+  {
+    "type": "manual",
+    "identifier": "https://www.hsbc.com/careers/students-and-graduates",
+    "name": "HSBC",
+    "url": "https://www.hsbc.com/careers/students-and-graduates",
+    "industry": "finance",
+    "enabled": true,
+    "notes": null,
+    "sector": "Investment banking",
+    "state": {
+      "cities": "London; New York",
+      "reason": "none",
+      "system": null
+    }
+  },
+  {
+    "type": "manual",
+    "identifier": "https://www.handelsbanken.se/sv/om-oss/jobba-hos-oss/student/program-for-studenter",
+    "name": "Handelsbanken Capital Markets",
+    "url": "https://www.handelsbanken.se/sv/om-oss/jobba-hos-oss/student/program-for-studenter",
+    "industry": "finance",
+    "enabled": true,
+    "notes": "IB-internships lyses ut via Jobylon; UK-internships: https://www.handelsbanken.co.uk/en/about-us/careers/internships",
+    "sector": "Bank",
+    "state": {
+      "cities": "Stockholm; Oslo; London; New York",
+      "reason": "unsupported",
+      "system": "Jobylon"
+    }
+  },
+  {
+    "type": "manual",
+    "identifier": "https://www.herkulescapital.no/",
+    "name": "Herkules Capital",
+    "url": "https://www.herkulescapital.no/",
+    "industry": "finance",
+    "enabled": true,
+    "notes": "Sjekk forsiden for karrierelenke",
+    "sector": "Private equity",
+    "state": {
+      "cities": "Oslo",
+      "reason": "none",
+      "system": null
+    }
+  },
+  {
+    "type": "manual",
+    "identifier": "https://www.hitecvision.com/careers",
+    "name": "HitecVision",
+    "url": "https://www.hitecvision.com/careers",
+    "industry": "finance",
+    "enabled": true,
+    "notes": null,
+    "sector": "Private equity",
+    "state": {
+      "cities": "Oslo",
+      "reason": "unreachable",
+      "system": null
+    }
+  },
+  {
+    "type": "manual",
+    "identifier": "https://hl.com/careers/",
+    "name": "Houlihan Lokey",
+    "url": "https://hl.com/careers/",
+    "industry": "finance",
+    "enabled": true,
+    "notes": null,
+    "sector": "Investment banking",
+    "state": {
+      "cities": "London; New York",
+      "reason": "none",
+      "system": null
+    }
+  },
+  {
+    "type": "manual",
+    "identifier": "https://implementconsultinggroup.com/careers",
+    "name": "Implement Consulting Group",
+    "url": "https://implementconsultinggroup.com/careers",
+    "industry": "consulting",
+    "enabled": true,
+    "notes": null,
+    "sector": "Consulting",
+    "state": {
+      "cities": "Oslo; Stockholm",
+      "reason": "unreachable",
+      "system": null
+    }
+  },
+  {
+    "type": "manual",
+    "identifier": "https://careers.jpmorgan.com/global/en/students/programs",
+    "name": "J.P. Morgan",
+    "url": "https://careers.jpmorgan.com/global/en/students/programs",
+    "industry": "finance",
+    "enabled": true,
+    "notes": null,
+    "sector": "Investment banking",
+    "state": {
+      "cities": "London; New York",
+      "reason": "unsupported",
+      "system": "Oracle"
+    }
+  },
+  {
+    "type": "manual",
+    "identifier": "https://www.jefferies.com/careers/",
+    "name": "Jefferies",
+    "url": "https://www.jefferies.com/careers/",
+    "industry": "finance",
+    "enabled": true,
+    "notes": null,
+    "sector": "Investment banking",
+    "state": {
+      "cities": "London; New York",
+      "reason": "none",
+      "system": null
+    }
+  },
+  {
+    "type": "manual",
+    "identifier": "https://www.kkr.com/careers",
+    "name": "KKR",
+    "url": "https://www.kkr.com/careers",
+    "industry": "finance",
+    "enabled": true,
+    "notes": null,
+    "sector": "Private equity",
+    "state": {
+      "cities": "London; New York",
+      "reason": "none",
+      "system": null
+    }
+  },
+  {
+    "type": "manual",
+    "identifier": "https://kpmg.com/no/nb/karriere/rekruttering-nyutdannet.html",
+    "name": "KPMG Norge",
+    "url": "https://kpmg.com/no/nb/karriere/rekruttering-nyutdannet.html",
+    "industry": "audit",
+    "enabled": true,
+    "notes": "Deltid, internship og skriveplass",
+    "sector": "Revisjon",
+    "state": {
+      "cities": "Oslo",
+      "reason": "none",
+      "system": null
+    }
+  },
+  {
+    "type": "manual",
+    "identifier": "https://kpmg.com/se/en/career/students.html",
+    "name": "KPMG Sverige",
+    "url": "https://kpmg.com/se/en/career/students.html",
+    "industry": "audit",
+    "enabled": true,
+    "notes": null,
+    "sector": "Revisjon",
+    "state": {
+      "cities": "Stockholm",
+      "reason": "none",
+      "system": null
+    }
+  },
+  {
+    "type": "manual",
+    "identifier": "https://kpmg.com/uk/en/careers/students.html",
+    "name": "KPMG UK",
+    "url": "https://kpmg.com/uk/en/careers/students.html",
+    "industry": "audit",
+    "enabled": true,
+    "notes": null,
+    "sector": "Revisjon",
+    "state": {
+      "cities": "London",
+      "reason": "unreachable",
+      "system": null
+    }
+  },
+  {
+    "type": "manual",
+    "identifier": "https://www.kpmguscareers.com/campus/",
+    "name": "KPMG US",
+    "url": "https://www.kpmguscareers.com/campus/",
+    "industry": "audit",
+    "enabled": true,
+    "notes": null,
+    "sector": "Revisjon",
+    "state": {
+      "cities": "New York",
+      "reason": "unsupported",
+      "system": "Avature"
+    }
+  },
+  {
+    "type": "manual",
+    "identifier": "https://karrierestart.no/",
+    "name": "Karrierestart.no",
+    "url": "https://karrierestart.no/",
+    "industry": null,
+    "enabled": true,
+    "notes": null,
+    "sector": "Jobbportal",
+    "state": {
+      "cities": "Oslo",
+      "reason": "unreachable",
+      "system": null
+    }
+  },
+  {
+    "type": "manual",
+    "identifier": "https://www.kearney.com/careers",
+    "name": "Kearney",
+    "url": "https://www.kearney.com/careers",
+    "industry": "consulting",
+    "enabled": true,
+    "notes": null,
+    "sector": "Consulting",
+    "state": {
+      "cities": "Oslo; Stockholm; London; New York",
+      "reason": "none",
+      "system": null
+    }
+  },
+  {
+    "type": "manual",
+    "identifier": "https://www.lazard.com/careers/",
+    "name": "Lazard",
+    "url": "https://www.lazard.com/careers/",
+    "industry": "finance",
+    "enabled": true,
+    "notes": null,
+    "sector": "Investment banking",
+    "state": {
+      "cities": "London; New York; Stockholm",
+      "reason": "unsupported",
+      "system": "Oracle"
+    }
+  },
+  {
+    "type": "manual",
+    "identifier": "https://www.mckinsey.com/careers/students",
+    "name": "McKinsey & Company",
+    "url": "https://www.mckinsey.com/careers/students",
+    "industry": "consulting",
+    "enabled": true,
+    "notes": null,
+    "sector": "Consulting",
+    "state": {
+      "cities": "Oslo; Stockholm; London; New York",
+      "reason": "none",
+      "system": null
+    }
+  },
+  {
+    "type": "manual",
+    "identifier": "https://www.moelis.com/careers/",
+    "name": "Moelis & Company",
+    "url": "https://www.moelis.com/careers/",
+    "industry": "finance",
+    "enabled": true,
+    "notes": null,
+    "sector": "Investment banking",
+    "state": {
+      "cities": "London; New York",
+      "reason": "workday",
+      "system": "Workday"
+    }
+  },
+  {
+    "type": "manual",
+    "identifier": "https://www.morganstanley.com/careers/students-graduates",
+    "name": "Morgan Stanley",
+    "url": "https://www.morganstanley.com/careers/students-graduates",
+    "industry": "finance",
+    "enabled": true,
+    "notes": null,
+    "sector": "Investment banking",
+    "state": {
+      "cities": "London; New York",
+      "reason": "unreachable",
+      "system": null
+    }
+  },
+  {
+    "type": "manual",
+    "identifier": "https://www.nbim.no/en/organisation/career/",
+    "name": "Norges Bank Investment Management (NBIM)",
+    "url": "https://www.nbim.no/en/organisation/career/",
+    "industry": "finance",
+    "enabled": true,
+    "notes": "Summer internship: https://www.nbim.no/en/about-us/career/summer-internship/ – Graduate: https://www.nbim.no/en/organisation/career/graduate-programme/",
+    "sector": "Kapitalforvaltning",
+    "state": {
+      "cities": "Oslo; London; New York",
+      "reason": "none",
+      "system": null
+    }
+  },
+  {
+    "type": "manual",
+    "identifier": "https://www.oliverwyman.com/careers.html",
+    "name": "Oliver Wyman",
+    "url": "https://www.oliverwyman.com/careers.html",
+    "industry": "consulting",
+    "enabled": true,
+    "notes": null,
+    "sector": "Consulting",
+    "state": {
+      "cities": "Stockholm; London; New York",
+      "reason": "none",
+      "system": null
+    }
+  },
+  {
+    "type": "manual",
+    "identifier": "https://www.pjtpartners.com/careers",
+    "name": "PJT Partners",
+    "url": "https://www.pjtpartners.com/careers",
+    "industry": "finance",
+    "enabled": true,
+    "notes": null,
+    "sector": "Investment banking",
+    "state": {
+      "cities": "London; New York",
+      "reason": "workday",
+      "system": "Workday"
+    }
+  },
+  {
+    "type": "manual",
+    "identifier": "https://pwpartners.com/careers/",
+    "name": "Perella Weinberg Partners",
+    "url": "https://pwpartners.com/careers/",
+    "industry": "finance",
+    "enabled": true,
+    "notes": null,
+    "sector": "Investment banking",
+    "state": {
+      "cities": "London; New York",
+      "reason": "unreachable",
+      "system": null
+    }
+  },
+  {
+    "type": "manual",
+    "identifier": "https://www.pwc.no/no/karriere/nyutdannede-og-studenter.html",
+    "name": "PwC Norge",
+    "url": "https://www.pwc.no/no/karriere/nyutdannede-og-studenter.html",
+    "industry": "audit",
+    "enabled": true,
+    "notes": "Revisjon, Consulting, Deals/Strategy&",
+    "sector": "Revisjon",
+    "state": {
+      "cities": "Oslo",
+      "reason": "none",
+      "system": null
+    }
+  },
+  {
+    "type": "manual",
+    "identifier": "https://www.pwc.se/sv/karriar.html",
+    "name": "PwC Sverige",
+    "url": "https://www.pwc.se/sv/karriar.html",
+    "industry": "audit",
+    "enabled": true,
+    "notes": null,
+    "sector": "Revisjon",
+    "state": {
+      "cities": "Stockholm",
+      "reason": "unsupported",
+      "system": "Jobylon"
+    }
+  },
+  {
+    "type": "manual",
+    "identifier": "https://www.pwc.co.uk/careers/early-careers.html",
+    "name": "PwC UK",
+    "url": "https://www.pwc.co.uk/careers/early-careers.html",
+    "industry": "audit",
+    "enabled": true,
+    "notes": null,
+    "sector": "Revisjon",
+    "state": {
+      "cities": "London",
+      "reason": "none",
+      "system": null
+    }
+  },
+  {
+    "type": "manual",
+    "identifier": "https://www.pwc.com/us/en/careers/entry-level.html",
+    "name": "PwC US",
+    "url": "https://www.pwc.com/us/en/careers/entry-level.html",
+    "industry": "audit",
+    "enabled": true,
+    "notes": null,
+    "sector": "Revisjon",
+    "state": {
+      "cities": "New York",
+      "reason": "unreachable",
+      "system": null
+    }
+  },
+  {
+    "type": "manual",
+    "identifier": "https://www.rothschildandco.com/en/careers/",
+    "name": "Rothschild & Co",
+    "url": "https://www.rothschildandco.com/en/careers/",
+    "industry": "finance",
+    "enabled": true,
+    "notes": null,
+    "sector": "Investment banking",
+    "state": {
+      "cities": "London; New York; Stockholm",
+      "reason": "none",
+      "system": null
+    }
+  },
+  {
+    "type": "manual",
+    "identifier": "https://www.sb1markets.no/en/",
+    "name": "SB1 Markets",
+    "url": "https://www.sb1markets.no/en/",
+    "industry": "finance",
+    "enabled": true,
+    "notes": "Ingen egen karriereside funnet; stillinger på rekrutteringsportal/LinkedIn, åpen søknad til karriere@sb1markets.no",
+    "sector": "Investment banking",
+    "state": {
+      "cities": "Oslo; Stockholm; New York",
+      "reason": "none",
+      "system": null
+    }
+  },
+  {
+    "type": "manual",
+    "identifier": "https://sebgroup.com/career/graduates-and-students",
+    "name": "SEB",
+    "url": "https://sebgroup.com/career/graduates-and-students",
+    "industry": "finance",
+    "enabled": true,
+    "notes": "Ledige stillinger: https://sebgroup.com/career/find-your-new-job/our-vacant-positions",
+    "sector": "Bank",
+    "state": {
+      "cities": "Stockholm; Oslo; London; New York",
+      "reason": "none",
+      "system": null
+    }
+  },
+  {
+    "type": "manual",
+    "identifier": "https://www.storebrand.no/om-storebrand/jobb-i-storebrand",
+    "name": "Storebrand",
+    "url": "https://www.storebrand.no/om-storebrand/jobb-i-storebrand",
+    "industry": "finance",
+    "enabled": true,
+    "notes": null,
+    "sector": "Kapitalforvaltning",
+    "state": {
+      "cities": "Oslo; Stockholm",
+      "reason": "workday",
+      "system": "Workday"
+    }
+  },
+  {
+    "type": "manual",
+    "identifier": "https://www.swedbank.com/about-swedbank/career.html",
+    "name": "Swedbank",
+    "url": "https://www.swedbank.com/about-swedbank/career.html",
+    "industry": "finance",
+    "enabled": true,
+    "notes": null,
+    "sector": "Bank",
+    "state": {
+      "cities": "Stockholm; Oslo",
+      "reason": "unreachable",
+      "system": null
+    }
+  },
+  {
+    "type": "manual",
+    "identifier": "https://www.triton-partners.com/careers/",
+    "name": "Triton Partners",
+    "url": "https://www.triton-partners.com/careers/",
+    "industry": "finance",
+    "enabled": true,
+    "notes": null,
+    "sector": "Private equity",
+    "state": {
+      "cities": "Stockholm; London",
+      "reason": "workday",
+      "system": "Workday"
+    }
+  },
+  {
+    "type": "manual",
+    "identifier": "https://www.ubs.com/global/en/careers/early-careers.html",
+    "name": "UBS",
+    "url": "https://www.ubs.com/global/en/careers/early-careers.html",
+    "industry": "finance",
+    "enabled": true,
+    "notes": null,
+    "sector": "Investment banking",
+    "state": {
+      "cities": "London; New York",
+      "reason": "none",
+      "system": null
+    }
+  },
+  {
+    "type": "manual",
+    "identifier": "https://verdane.com/careers/",
+    "name": "Verdane",
+    "url": "https://verdane.com/careers/",
+    "industry": "finance",
+    "enabled": true,
+    "notes": null,
+    "sector": "Private equity",
+    "state": {
+      "cities": "Oslo; Stockholm; London",
+      "reason": "unreachable",
+      "system": null
+    }
+  }
+]

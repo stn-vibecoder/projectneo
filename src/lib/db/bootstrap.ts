@@ -11,7 +11,7 @@ import { LOCAL_USER } from "./local-user";
 
 export { LOCAL_USER };
 
-export async function bootstrap(db: PGlite, root: string, opts: { seed?: boolean; localUser?: boolean } = {}) {
+export async function bootstrap(db: PGlite, root: string, opts: { seed?: boolean; localUser?: boolean; defaultSources?: boolean } = {}) {
   const supa = path.join(root, "supabase");
   await db.exec(readFileSync(path.join(supa, "local", "auth-stub.sql"), "utf8"));
   await db.exec(`create table if not exists public._local_migrations (
@@ -44,5 +44,14 @@ export async function bootstrap(db: PGlite, root: string, opts: { seed?: boolean
       LOCAL_USER.id,
       LOCAL_USER.email,
     ]);
+    // Standardkildene legges inn én gang (også i en ny, tom lokal database).
+    const done = await db.query(`select 1 from public._local_migrations where name = '__default_sources'`);
+    if (done.rows.length === 0 && opts.defaultSources !== false) {
+      await db.query(readFileSync(path.join(supa, "default-sources.sql"), "utf8"), [
+        LOCAL_USER.id,
+        readFileSync(path.join(supa, "default-sources.json"), "utf8"),
+      ]);
+      await db.query(`insert into public._local_migrations (name) values ('__default_sources')`);
+    }
   }
 }

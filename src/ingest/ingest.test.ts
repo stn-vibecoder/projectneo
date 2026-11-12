@@ -151,7 +151,7 @@ describe("lagring (Postgres i minnet)", () => {
 
   beforeAll(async () => {
     db = await PGlite.create();
-    await bootstrap(db, path.join(__dirname, "..", ".."), { seed: false, localUser: true });
+    await bootstrap(db, path.join(__dirname, "..", ".."), { seed: false, localUser: true, defaultSources: false });
     await db.query(
       `insert into sources (id, user_id, type, identifier, name) values ($1, $3, 'greenhouse', 'a', 'A'), ($2, $3, 'lever', 'b', 'B')`,
       [SRC, SRC2, LOCAL_USER.id],

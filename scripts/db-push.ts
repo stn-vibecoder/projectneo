@@ -15,7 +15,7 @@
 import { readFileSync, readdirSync } from "node:fs";
 import path from "node:path";
 import postgres from "postgres";
-import { connectionOptions, databaseUrl } from "../src/lib/db/url";
+import { PG_TYPES, connectionOptions, databaseUrl } from "../src/lib/db/url";
 
 const url = databaseUrl();
 // Uten påtvunget innlogging bruker appen én fast bruker, som må finnes i databasen.
@@ -35,8 +35,9 @@ if (!url) {
 }
 
 const root = process.cwd();
+const LOCAL_USER_ID = "00000000-0000-4000-8000-000000000001";
 const conn = connectionOptions(url);
-const sql = postgres(conn.url, { ssl: conn.ssl, prepare: false, max: 1, onnotice: () => {} });
+const sql = postgres(conn.url, { ssl: conn.ssl, types: PG_TYPES, prepare: false, max: 1, onnotice: () => {} });
 
 async function main() {
   if (args.has("--auth-stub")) {
@@ -80,8 +81,18 @@ async function main() {
   });
 
   if (args.has("--local-user") || !loginRequired) {
-    await sql`insert into auth.users (id, email) values ('00000000-0000-4000-8000-000000000001', 'student@lokal')
+    await sql`insert into auth.users (id, email) values (${LOCAL_USER_ID}, 'student@lokal')
               on conflict (id) do nothing`;
+
+    // Standardkildene legges inn én gang. Sletter du en kilde i appen, kommer den ikke tilbake.
+    const [done] = await sql`select 1 from app_private.migrations where name = '__default_sources'`;
+    if (!done) {
+      const list = readFileSync(path.join(root, "supabase", "default-sources.json"), "utf8");
+      const insert = readFileSync(path.join(root, "supabase", "default-sources.sql"), "utf8");
+      const res = await sql.unsafe(insert, [LOCAL_USER_ID, list]);
+      await sql`insert into app_private.migrations (name) values ('__default_sources')`;
+      console.log(`✓ ${res.count} standardkilder lagt inn.`);
+    }
   }
 
   console.log(count ? `✓ ${count} migrasjon(er) kjørt.` : "✓ Databasen er oppdatert.");

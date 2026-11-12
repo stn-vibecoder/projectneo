@@ -24,3 +24,14 @@ export function connectionOptions(raw: string): { url: string; ssl: false | "req
   for (const key of [...u.searchParams.keys()]) u.searchParams.delete(key);
   return { url: u.toString(), ssl: local || sslmode === "disable" ? false : "require" };
 }
+
+/**
+ * JSON-parametre skal oppføre seg som i PGlite: en ferdig JSON-tekst
+ * (f.eks. JSON.stringify(...) med ::jsonb) sendes som den er, i stedet for
+ * å bli pakket inn som en JSON-streng. Brukes av postgres.js.
+ */
+const serializeJson = (v: unknown) => (typeof v === "string" ? v : JSON.stringify(v));
+export const PG_TYPES = {
+  json: { to: 114, from: [114], serialize: serializeJson, parse: (v: string) => JSON.parse(v) },
+  jsonb: { to: 3802, from: [3802], serialize: serializeJson, parse: (v: string) => JSON.parse(v) },
+};

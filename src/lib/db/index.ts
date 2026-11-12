@@ -3,7 +3,7 @@ import { connection } from "next/server";
 import type { PGlite } from "@electric-sql/pglite";
 import postgres from "postgres";
 import { wrap, type Sql } from "./sql";
-import { connectionOptions, databaseUrl } from "./url";
+import { PG_TYPES, connectionOptions, databaseUrl } from "./url";
 
 export { pgArray, type Sql } from "./sql";
 
@@ -45,6 +45,7 @@ function pg(): postgres.Sql {
   const { url, ssl } = connectionOptions(DATABASE_URL);
   g.__pg ??= postgres(url, {
     ssl,
+    types: PG_TYPES,
     // Supabase sin transaction pooler støtter ikke «prepared statements».
     prepare: false,
     max: Number(process.env.DB_POOL_MAX ?? 3),

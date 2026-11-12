@@ -1,0 +1,68 @@
+{
+ "uuid": "nav-intern-1",
+ "ad_content": {
+  "uuid": "nav-intern-1",
+  "published": "2026-11-06T00:00:00+01:00",
+  "expires": "2026-11-20T00:00:00+01:00",
+  "updated": "2026-11-06T11:27:20.928064+01:00",
+  "workLocations": [
+   {
+    "country": "NORGE",
+    "address": "Vetlandsveien 99",
+    "city": "OSLO",
+    "postalCode": "0685",
+    "county": "OSLO",
+    "municipal": "OSLO"
+   }
+  ],
+  "contactList": [],
+  "title": "Sommerjobb 2027 – analyse",
+  "description": "<p>Kort beskrivelse.</p>",
+  "sourceurl": "",
+  "source": "IMPORTAPI",
+  "applicationUrl": "https://candidate.webcruiter.com/cv?advertid=5195655508&language=nb&link_source_id=17&utm_medium=talentech_publishing&utm_source=nav",
+  "applicationDue": "2026-11-20T00:00:00",
+  "occupationCategories": [
+   {
+    "level1": "Utdanning",
+    "level2": "Barnehage- og skolefritidsassistenter"
+   }
+  ],
+  "categoryList": [
+   {
+    "categoryType": "ESCO",
+    "code": "http://data.europa.eu/esco/occupation/4d27152a-a8ee-4f5a-9f93-a2fb4fb2b2e3",
+    "name": "Barnehageassistent",
+    "description": "",
+    "score": 1.0
+   },
+   {
+    "categoryType": "JANZZ",
+    "code": "53614",
+    "name": "Barnehageassistent",
+    "description": "",
+    "score": 1.0
+   },
+   {
+    "categoryType": "STYRK08",
+    "code": "5311",
+    "name": "Barnehage- og skolefritidsassistenter mv.",
+    "description": "",
+    "score": 1.0
+   }
+  ],
+  "jobtitle": "Barnehagemedarbeider",
+  "link": "https://arbeidsplassen.nav.no/stillinger/stilling/73d2ac9f-2a88-4a67-9f88-71c9f9818808",
+  "employer": {
+   "name": "Testbanken ASA",
+   "orgnr": "000000000"
+  },
+  "engagementtype": "Fast",
+  "extent": "Heltid",
+  "starttime": "",
+  "positioncount": "1",
+  "sector": "Offentlig"
+ },
+ "sistEndret": "2026-11-06T11:27:20.928+01:00",
+ "status": "ACTIVE"
+}

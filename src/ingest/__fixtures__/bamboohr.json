@@ -1,0 +1,67 @@
+{
+ "meta": {
+  "totalCount": 3
+ },
+ "result": [
+  {
+   "id": "54",
+   "jobOpeningName": "Intern, Investment team - Munich",
+   "departmentId": "18634",
+   "departmentLabel": "Investment team",
+   "employmentStatusLabel": "Intern",
+   "employmentType": null,
+   "location": {
+    "city": "Munchen",
+    "state": "DE"
+   },
+   "atsLocation": {
+    "country": null,
+    "state": null,
+    "province": null,
+    "city": null
+   },
+   "isRemote": null,
+   "locationType": "0"
+  },
+  {
+   "id": "60",
+   "jobOpeningName": "Management Intern",
+   "departmentId": "18608",
+   "departmentLabel": "IR",
+   "employmentStatusLabel": "Intern",
+   "employmentType": null,
+   "location": {
+    "city": "Oslo",
+    "state": null
+   },
+   "atsLocation": {
+    "country": null,
+    "state": null,
+    "province": null,
+    "city": null
+   },
+   "isRemote": null,
+   "locationType": "0"
+  },
+  {
+   "id": "999",
+   "jobOpeningName": "Summer Intern, Investment team - Stockholm",
+   "departmentId": "18634",
+   "departmentLabel": "Investment team",
+   "employmentStatusLabel": "Intern",
+   "employmentType": null,
+   "location": {
+    "city": "Stockholm",
+    "state": "Stockholm"
+   },
+   "atsLocation": {
+    "country": null,
+    "state": null,
+    "province": null,
+    "city": null
+   },
+   "isRemote": null,
+   "locationType": "0"
+  }
+ ]
+}

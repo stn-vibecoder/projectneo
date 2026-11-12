@@ -1,0 +1,87 @@
+{
+ "version": "1.0",
+ "title": "Stillingsfeeden fra arbeidsplassen.no",
+ "home_page_url": "https://arbeidsplassen.nav.no",
+ "feed_url": "/api/v1/feed/b1b73b3d-93c8-48c7-999f-51240522cbba",
+ "description": "Feed med stillinger fra arbeidsplassen.no - En av Norges største oversikter over utlyste stillinger",
+ "next_url": null,
+ "id": "b1b73b3d-93c8-48c7-999f-51240522cbba",
+ "next_id": null,
+ "items": [
+  {
+   "id": "52170cab-4562-41df-83ac-3755feb74d13",
+   "url": "/api/v1/feedentry/52170cab-4562-41df-83ac-3755feb74d13",
+   "title": "Sushikokk søkes til 20-50% stilling – Madla, Stavanger",
+   "content_text": "Stillingsannonse",
+   "date_modified": "2026-11-06T01:30:51.843369+01:00",
+   "_feed_entry": {
+    "uuid": "52170cab-4562-41df-83ac-3755feb74d13",
+    "status": "ACTIVE",
+    "title": "Sushikokk søkes til 20-50% stilling – Madla, Stavanger",
+    "businessName": "NORDIC SUSHI AS",
+    "municipal": "STAVANGER",
+    "sistEndret": "2026-11-06T01:30:51.843369+01:00"
+   }
+  },
+  {
+   "id": "c95ecd84-25a1-489f-949e-0796cea64639",
+   "url": "/api/v1/feedentry/c95ecd84-25a1-489f-949e-0796cea64639",
+   "title": "B2B Kundekonsulent & Selger | Høy provisjon og porteføljebasert fastlønn",
+   "content_text": "Stillingsannonse",
+   "date_modified": "2026-11-06T01:30:51.866704+01:00",
+   "_feed_entry": {
+    "uuid": "c95ecd84-25a1-489f-949e-0796cea64639",
+    "status": "ACTIVE",
+    "title": "B2B Kundekonsulent & Selger | Høy provisjon og porteføljebasert fastlønn",
+    "businessName": "Norico AS",
+    "municipal": "OSLO",
+    "sistEndret": "2026-11-06T01:30:51.866704+01:00"
+   }
+  },
+  {
+   "id": "4ff978cb-6bd4-4dd7-abbc-ac4f22d0f95e",
+   "url": "/api/v1/feedentry/4ff978cb-6bd4-4dd7-abbc-ac4f22d0f95e",
+   "title": "Renholder - Fast ansettelse - Melhus/Trondheim",
+   "content_text": "Stillingsannonse",
+   "date_modified": "2026-11-06T01:30:51.872972+01:00",
+   "_feed_entry": {
+    "uuid": "4ff978cb-6bd4-4dd7-abbc-ac4f22d0f95e",
+    "status": "ACTIVE",
+    "title": "Renholder - Fast ansettelse - Melhus/Trondheim",
+    "businessName": "Agnes Karoline Grønli AS",
+    "municipal": "MELHUS",
+    "sistEndret": "2026-11-06T01:30:51.872972+01:00"
+   }
+  },
+  {
+   "id": "nav-intern-1",
+   "url": "/api/v1/feedentry/nav-intern-1",
+   "title": "Sommerjobb 2027 – analyse",
+   "content_text": "Stillingsannonse",
+   "date_modified": "2026-11-06T10:00:00+01:00",
+   "_feed_entry": {
+    "uuid": "nav-intern-1",
+    "status": "ACTIVE",
+    "title": "Sommerjobb 2027 – analyse",
+    "businessName": "Testbanken ASA",
+    "municipal": "OSLO",
+    "sistEndret": "2026-11-06T10:00:00+01:00"
+   }
+  },
+  {
+   "id": "nav-old-1",
+   "url": "/api/v1/feedentry/nav-old-1",
+   "title": "Sommerjobb 2026",
+   "content_text": "",
+   "date_modified": "2026-11-06T11:00:00+01:00",
+   "_feed_entry": {
+    "uuid": "nav-old-1",
+    "status": "INACTIVE",
+    "title": "Sommerjobb 2026",
+    "businessName": "Testbanken ASA",
+    "municipal": "OSLO",
+    "sistEndret": "2026-11-06T11:00:00+01:00"
+   }
+  }
+ ]
+}

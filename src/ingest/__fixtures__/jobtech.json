@@ -1,0 +1,290 @@
+{
+ "total": {
+  "value": 5
+ },
+ "hits": [
+  {
+   "relevance": 1.0,
+   "id": "31618810",
+   "external_id": null,
+   "original_id": null,
+   "label": [],
+   "webpage_url": "https://arbetsformedlingen.se/platsbanken/annonser/31618810",
+   "logo_url": "https://arbetsformedlingen.se/rest/employer-logo-api/api/v1/organisation/5590649207/logotyper/logo.png",
+   "headline": "Praktikant Upphandling/anbud/ansökan - Kraftsam",
+   "application_deadline": "2026-11-29T23:59:59",
+   "number_of_vacancies": 1,
+   "description": {
+    "text": "Praktik inom anbud och Bid Manager\nStuderar du till anbud/Bid Manager eller inköpare?\nSom praktikant hos oss på Kraftsam får du möjlighet att lära dig och utveckla dina kunskaper gällande anbudsprocessen.\nEfter praktik hos oss så tror vi att du har lärt dig så mycket gällande anbud och liknande proc"
+   },
+   "employment_type": {
+    "concept_id": "1paU_aCR_nGn",
+    "label": "Behovsanställning",
+    "legacy_ams_taxonomy_id": "4"
+   },
+   "salary_type": {
+    "concept_id": "vVtj_qm6_GQu",
+    "label": "Rörlig ackords- eller provisionslön",
+    "legacy_ams_taxonomy_id": "8"
+   },
+   "salary_description": null,
+   "duration": {
+    "concept_id": null,
+    "label": null,
+    "legacy_ams_taxonomy_id": null
+   },
+   "working_hours_type": {
+    "concept_id": null,
+    "label": null,
+    "legacy_ams_taxonomy_id": null
+   },
+   "scope_of_work": {
+    "min": null,
+    "max": null
+   },
+   "access": null,
+   "employer": {
+    "phone_number": null,
+    "email": null,
+    "url": null,
+    "organization_number": "5590649207",
+    "name": "Kraftsam Rekrytering & Bemanning AB",
+    "workplace": "Kraftsam"
+   },
+   "application_details": {
+    "information": null,
+    "reference": null,
+    "email": null,
+    "via_af": false,
+    "url": "https://pnty-apply.ponty-system.se/kraftsam?id=1288&pnty_src=platsbanken",
+    "other": null
+   },
+   "experience_required": true,
+   "access_to_own_car": false,
+   "driving_license_required": false,
+   "driving_license": null,
+   "occupation": {
+    "concept_id": "ryH6_MAv_QWb",
+    "label": "Upphandlare",
+    "legacy_ams_taxonomy_id": "7503"
+   },
+   "occupation_group": {
+    "concept_id": "85cq_6uK_4cK",
+    "label": "Inköpare och upphandlare",
+    "legacy_ams_taxonomy_id": "3323"
+   },
+   "occupation_field": {
+    "concept_id": "RPTn_bxG_ExZ",
+    "label": "Försäljning, inköp, marknadsföring",
+    "legacy_ams_taxonomy_id": "5"
+   },
+   "workplace_model": {
+    "concept_id": null,
+    "label": null
+   },
+   "workplace_address": {
+    "municipality": "Stockholm",
+    "municipality_code": "0180",
+    "municipality_concept_id": "AvNB_uwa_6n6",
+    "region": "Stockholms län",
+    "region_code": "01",
+    "region_concept_id": "CifL_Rzy_Mku",
+    "country": "Sverige",
+    "country_code": "199",
+    "country_concept_id": "i46j_HmG_v64",
+    "street_address": "Odengatan 40",
+    "postcode": "11351",
+    "city": "Stockholm",
+    "coordinates": [
+     18.0580629541646,
+     59.3447988392249
+    ]
+   },
+   "workplace_addresses": [
+    {
+     "municipality": "Stockholm",
+     "municipality_code": "0180",
+     "municipality_concept_id": "AvNB_uwa_6n6",
+     "region": "Stockholms län",
+     "region_code": "01",
+     "region_concept_id": "CifL_Rzy_Mku",
+     "country": "Sverige",
+     "country_code": "199",
+     "country_concept_id": "i46j_HmG_v64",
+     "street_address": "Odengatan 40",
+     "postcode": "11351",
+     "city": "Stockholm",
+     "coordinates": [
+      18.0580629541646,
+      59.3447988392249
+     ]
+    }
+   ],
+   "must_have": {
+    "skills": [],
+    "languages": [
+     {
+      "weight": 10,
+      "concept_id": "zSLA_vw2_FXN",
+      "label": "Svenska",
+      "legacy_ams_taxonomy_id": "502"
+     }
+    ],
+    "work_experiences": [],
+    "education": [],
+    "education_level": []
+   },
+   "nice_to_have": {
+    "skills": [],
+    "languages": [],
+    "work_experiences": [],
+    "education": [],
+    "education_level": []
+   },
+   "publication_date": "2026-10-20T11:51:35",
+   "last_publication_date": "2026-11-29T23:59:59",
+   "removed": false,
+   "removed_date": null,
+   "source_type": "VIA_JOBPOSTING",
+   "timestamp": 1792489895567
+  },
+  {
+   "relevance": 0.1936852027956152,
+   "id": "31638120",
+   "external_id": null,
+   "original_id": null,
+   "label": [],
+   "webpage_url": "https://arbetsformedlingen.se/platsbanken/annonser/31638120",
+   "logo_url": "https://arbetsformedlingen.se/rest/employer-logo-api/api/v1/organisation/2021002635/logotyper/logo.png",
+   "headline": "Praktikplats vid Riksgälden – avdelningen Finansiell stabilitet",
+   "application_deadline": "2026-11-15T23:59:59",
+   "number_of_vacancies": 1,
+   "description": {
+    "text": "Har du ett intresse för finansiella stabilitetsfrågor och vill lära dig mer om arbetet med att minska risken för allvarliga störningar i det finansiella systemet? Som praktikant på avdelningen Finansiell stabilitet får du erfarenhet av och förståelse för hur en svensk myndighet arbetar för att vara "
+   },
+   "employment_type": {
+    "concept_id": "PFZr_Syz_cUq",
+    "label": "Vanlig anställning",
+    "legacy_ams_taxonomy_id": "1"
+   },
+   "salary_type": {
+    "concept_id": "asrX_9Df_ukn",
+    "label": "Fast och rörlig lön",
+    "legacy_ams_taxonomy_id": "7"
+   },
+   "salary_description": null,
+   "duration": {
+    "concept_id": "Xj7x_7yZ_jEn",
+    "label": "3 månader – upp till 6 månader",
+    "legacy_ams_taxonomy_id": "3"
+   },
+   "working_hours_type": {
+    "concept_id": "6YE1_gAC_R2G",
+    "label": "Heltid",
+    "legacy_ams_taxonomy_id": "1"
+   },
+   "scope_of_work": {
+    "min": 100,
+    "max": 100
+   },
+   "access": null,
+   "employer": {
+    "phone_number": null,
+    "email": null,
+    "url": null,
+    "organization_number": "2021002635",
+    "name": "Riksgäldskontoret",
+    "workplace": "Riksgälden"
+   },
+   "application_details": {
+    "information": null,
+    "reference": null,
+    "email": null,
+    "via_af": false,
+    "url": "https://www.riksgalden.se/sv/om-riksgalden/jobba-hos-oss/lediga-tjanster/?rmpage=job&rmjob=482&utm_medium=talentech_publishing&utm_source=jobtip",
+    "other": null
+   },
+   "experience_required": true,
+   "access_to_own_car": false,
+   "driving_license_required": false,
+   "driving_license": null,
+   "occupation": {
+    "concept_id": "roHu_JVn_w1y",
+    "label": "Finansekonom",
+    "legacy_ams_taxonomy_id": "5669"
+   },
+   "occupation_group": {
+    "concept_id": "pTr9_RBT_9ur",
+    "label": "Finansanalytiker och investeringsrådgivare m.fl.",
+    "legacy_ams_taxonomy_id": "2413"
+   },
+   "occupation_field": {
+    "concept_id": "X82t_awd_Qyc",
+    "label": "Administration, ekonomi, juridik",
+    "legacy_ams_taxonomy_id": "1"
+   },
+   "workplace_model": {
+    "concept_id": null,
+    "label": null
+   },
+   "workplace_address": {
+    "municipality": "Stockholm",
+    "municipality_code": "0180",
+    "municipality_concept_id": "AvNB_uwa_6n6",
+    "region": "Stockholms län",
+    "region_code": "01",
+    "region_concept_id": "CifL_Rzy_Mku",
+    "country": "Sverige",
+    "country_code": "199",
+    "country_concept_id": "i46j_HmG_v64",
+    "street_address": null,
+    "postcode": "11122",
+    "city": "Stockholm",
+    "coordinates": [
+     18.04424109108437,
+     59.33580622393467
+    ]
+   },
+   "workplace_addresses": [
+    {
+     "municipality": "Stockholm",
+     "municipality_code": "0180",
+     "municipality_concept_id": "AvNB_uwa_6n6",
+     "region": "Stockholms län",
+     "region_code": "01",
+     "region_concept_id": "CifL_Rzy_Mku",
+     "country": "Sverige",
+     "country_code": "199",
+     "country_concept_id": "i46j_HmG_v64",
+     "street_address": null,
+     "postcode": "11122",
+     "city": "Stockholm",
+     "coordinates": [
+      18.04424109108437,
+      59.33580622393467
+     ]
+    }
+   ],
+   "must_have": {
+    "skills": [],
+    "languages": [],
+    "work_experiences": [],
+    "education": [],
+    "education_level": []
+   },
+   "nice_to_have": {
+    "skills": [],
+    "languages": [],
+    "work_experiences": [],
+    "education": [],
+    "education_level": []
+   },
+   "publication_date": "2026-10-23T14:18:15",
+   "last_publication_date": "2026-11-15T23:59:59",
+   "removed": false,
+   "removed_date": null,
+   "source_type": "VIA_JOBPOSTING",
+   "timestamp": 1792757895129
+  }
+ ]
+}

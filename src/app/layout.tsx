@@ -9,6 +9,8 @@ const serif = Source_Serif_4({ variable: "--font-serif-display", subsets: ["lati
 const mono = IBM_Plex_Mono({ variable: "--font-plex-mono", subsets: ["latin"], weight: ["400", "500", "600"] });
 
 export const metadata: Metadata = {
+  // Privat app: skal ikke dukke opp i Google eller andre søkemotorer.
+  robots: { index: false, follow: false },
   title: { default: "Internship-portalen", template: "%s · Internship-portalen" },
   description: "Finn internships i Oslo, Stockholm, New York og London, og følg søknadene dine.",
 };

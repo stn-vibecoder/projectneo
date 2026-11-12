@@ -95,6 +95,7 @@ Samme stilling fra flere kilder vises bare én gang.
 | `npm run db:verify` | Migrasjoner + seed i en database i minnet, med tester av triggere og RLS |
 | `npm run check` | Typesjekk, lint og alle tester |
 | `npm run build` | Produksjonsbygg |
+| `npm run db:push` | Kjør migrasjonene mot databasen i `DATABASE_URL` (skjer automatisk på Vercel) |
 
 ## Teknologi
 
@@ -141,12 +142,37 @@ scripts/verify-db.ts    Databasetester
 All SQL kjøres som rollen `authenticated` med brukerens id satt, også lokalt, så
 tilgangsreglene (RLS) testes hele veien.
 
-## Når vi kobler på Supabase (senere)
+## Legge appen ut på nett (Vercel)
 
-1. Lag et prosjekt på supabase.com og kjør migrasjonene der (`npx supabase db push`).
-2. Bytt databasetilkoblingen i `src/lib/db/index.ts` til Supabase (Postgres-tilkoblingsstreng).
-3. Slå på innlogging: `src/lib/auth.ts` og `src/proxy.ts` (se kommentarene der).
-   Innloggingssiden, Google-knappen og callback-ruten er allerede laget.
+Appen kan ligge på Vercel **uten innlogging**, som finansterminalen. Den trenger
+en database på nett for å huske dataene. Den lages inne i Vercel:
+
+1. **Importer repoet:** vercel.com → *Add New → Project* → velg `projectneo` → **Deploy**.
+   Første bygg feiler med «Fant ingen database». Det er forventet.
+2. **Lag databasen:** prosjektet i Vercel → **Storage** → *Create Database* →
+   **Supabase** → region **Stockholm (eu-north-1)** → *Create* → **Connect** til prosjektet.
+   Vercel legger inn tilkoblingen (`POSTGRES_URL`) selv.
+3. **Nøkkel for daglig henting:** *Settings → Environment Variables* → legg til
+   `CRON_SECRET` med en lang, tilfeldig tekst (f.eks. 40 tilfeldige bokstaver og tall).
+4. **Bygg på nytt:** *Deployments* → de tre prikkene på siste bygg → **Redeploy**.
+   Byggingen kjører databasemigrasjonene automatisk (`scripts/db-push.ts`).
+5. Åpne lenken, gå gjennom oppstarten og legg inn kildene på nytt (Kilder →
+   ferdige kilder, og **Importer liste** med `karrieresider.csv`).
+
+Det som skjer på Vercel:
+
+- Alle kilder hentes **én gang i døgnet** (Vercel Hobby tillater ikke oftere).
+  Trykk «Oppdater alle» under Kilder for å hente med en gang.
+- Siden er skjult for søkemotorer (`noindex`), men **alle med lenken kommer inn**
+  og kan endre dataene. Ikke del lenken offentlig.
+- Lokalt (`npm run dev`) brukes fortsatt databasen på Macen. Den er ikke koblet
+  til den på nett.
+
+**Slå på innlogging senere:** sett `NEXT_PUBLIC_REQUIRE_LOGIN=true`,
+`ALLOWED_EMAILS=din@epost.no` og (hvis ikke Vercel har lagt dem inn)
+`NEXT_PUBLIC_SUPABASE_URL` og `NEXT_PUBLIC_SUPABASE_ANON_KEY`, og bygg på nytt.
+I Supabase: *Authentication → URL Configuration* → sett **Site URL** til
+Vercel-lenken. Bare e-postene på listen kan lage konto og logge inn.
 
 ## Kjente forhold
 

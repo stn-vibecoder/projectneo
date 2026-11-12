@@ -10,7 +10,14 @@ async function LoginContent({ searchParams }: { searchParams: Promise<Record<str
   const sp = await searchParams;
   const t = await getTranslations("auth");
   const next = typeof sp.next === "string" ? sp.next : "/dashboard";
-  const error = sp.error === "callback" ? t("callbackError") : sp.error ? t("genericError") : undefined;
+  const error =
+    sp.error === "callback"
+      ? t("callbackError")
+      : sp.error === "forbidden"
+        ? t("forbidden")
+        : sp.error
+          ? t("genericError")
+          : undefined;
   return <LoginForm next={next} initialError={error} />;
 }
 

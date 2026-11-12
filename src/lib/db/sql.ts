@@ -1,4 +1,3 @@
-import type { Transaction } from "@electric-sql/pglite";
 
 export type Sql = {
   /** Rå rader. Datoer må castes til ::text i SQL-en. */
@@ -9,7 +8,10 @@ export type Sql = {
   row<T>(text: string, params?: unknown[]): Promise<T | null>;
 };
 
-export function wrap(tx: Pick<Transaction, "query">): Sql {
+/** Det minste vi trenger fra en transaksjon (PGlite eller postgres.js). */
+export type Queryable = { query<T>(text: string, params?: unknown[]): Promise<{ rows: T[] }> };
+
+export function wrap(tx: Queryable): Sql {
   const query = async <T>(text: string, params: unknown[] = []) => (await tx.query<T>(text, params)).rows;
   return {
     query,

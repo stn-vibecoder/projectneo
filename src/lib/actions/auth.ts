@@ -5,7 +5,7 @@ import { redirect } from "next/navigation";
 import { getTranslations } from "next-intl/server";
 import { z } from "zod";
 import { createClient } from "@/lib/supabase/server";
-import { SITE_URL } from "@/lib/env";
+import { SITE_URL, isAllowedEmail } from "@/lib/env";
 
 export type AuthState = { error?: string; message?: string } | null;
 
@@ -29,6 +29,7 @@ export async function signInWithPassword(_: AuthState, formData: FormData): Prom
   const t = await getTranslations("auth");
   const parsed = credentials.safeParse({ email: formData.get("email"), password: formData.get("password") });
   if (!parsed.success) return { error: t("invalidCredentials") };
+  if (!isAllowedEmail(parsed.data.email)) return { error: t("forbidden") };
 
   const supabase = await createClient();
   const { error } = await supabase.auth.signInWithPassword(parsed.data);
@@ -44,6 +45,8 @@ export async function signUp(_: AuthState, formData: FormData): Promise<AuthStat
   const t = await getTranslations("auth");
   const parsed = credentials.safeParse({ email: formData.get("email"), password: formData.get("password") });
   if (!parsed.success) return { error: t("passwordHint") };
+  // Personlig app: bare godkjente e-poster kan lage konto.
+  if (!isAllowedEmail(parsed.data.email)) return { error: t("forbidden") };
 
   const supabase = await createClient();
   const { data, error } = await supabase.auth.signUp({

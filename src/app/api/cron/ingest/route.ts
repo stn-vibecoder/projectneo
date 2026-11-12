@@ -7,6 +7,9 @@ import { runAllSources } from "@/ingest/run";
  * Krever hemmelig nøkkel: CRON_SECRET (Vercel) eller en tilfeldig nøkkel
  * som planleggeren lager ved oppstart (lokalt).
  */
+/** Henting av alle kilder kan ta litt tid (Vercel: maks 5 min). */
+export const maxDuration = 300;
+
 export async function GET(request: Request) {
   await connection();
   const auth = request.headers.get("authorization") ?? "";

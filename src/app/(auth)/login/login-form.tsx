@@ -25,19 +25,24 @@ export function LoginForm({ next, initialError }: { next: string; initialError?:
     <div className="flex flex-col gap-5">
       <h2 className="text-base font-semibold">{mode === "signin" ? t("signInTitle") : t("signUpTitle")}</h2>
 
-      <form action={signInWithGoogle}>
-        <input type="hidden" name="next" value={next} />
-        <Button type="submit" variant="secondary" className="w-full">
-          <GoogleIcon />
-          {t("google")}
-        </Button>
-      </form>
+      {/* Google-innlogging krever eget oppsett i Supabase; vises bare når det er slått på. */}
+      {process.env.NEXT_PUBLIC_GOOGLE_LOGIN === "true" && (
+        <>
+          <form action={signInWithGoogle}>
+            <input type="hidden" name="next" value={next} />
+            <Button type="submit" variant="secondary" className="w-full">
+              <GoogleIcon />
+              {t("google")}
+            </Button>
+          </form>
 
-      <div className="flex items-center gap-3 text-xs text-muted">
-        <span className="h-px flex-1 bg-border" />
-        {t("or")}
-        <span className="h-px flex-1 bg-border" />
-      </div>
+          <div className="flex items-center gap-3 text-xs text-muted">
+            <span className="h-px flex-1 bg-border" />
+            {t("or")}
+            <span className="h-px flex-1 bg-border" />
+          </div>
+        </>
+      )}
 
       <CredentialsForm key={mode} mode={mode} next={next} initialError={mode === "signin" ? initialError : undefined} />
 

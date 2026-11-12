@@ -1,8 +1,9 @@
 import { NextResponse, type NextRequest } from "next/server";
 import { createServerClient } from "@supabase/ssr";
-import { SUPABASE_KEY, SUPABASE_URL } from "@/lib/env";
+import { SUPABASE_KEY, SUPABASE_URL, isAllowedEmail } from "@/lib/env";
 
-const PUBLIC_PATHS = ["/login", "/auth"];
+// Cron-ruten har egen nøkkel (CRON_SECRET) og skal ikke sendes til innlogging.
+const PUBLIC_PATHS = ["/login", "/auth", "/api/cron"];
 
 /**
  * Brukes når Supabase-innlogging er slått på (ikke i lokal modus):
@@ -38,7 +39,11 @@ export async function supabaseProxy(request: NextRequest) {
     url.search = pathname === "/" ? "" : `?next=${encodeURIComponent(pathname + request.nextUrl.search)}`;
     return NextResponse.redirect(url);
   }
-  if (user && pathname === "/login") {
+  if (user && !isPublic && !isAllowedEmail(user.email)) {
+    // Innlogget, men ikke på listen over godkjente e-poster.
+    return NextResponse.redirect(new URL("/login?error=forbidden", request.url));
+  }
+  if (user && isAllowedEmail(user.email) && (pathname === "/login" || pathname === "/")) {
     return NextResponse.redirect(new URL("/dashboard", request.url));
   }
   return response;

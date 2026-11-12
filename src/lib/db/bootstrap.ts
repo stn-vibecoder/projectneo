@@ -7,10 +7,9 @@ import type { PGlite } from "@electric-sql/pglite";
 import { readFileSync, readdirSync } from "node:fs";
 import path from "node:path";
 
-export const LOCAL_USER = {
-  id: "00000000-0000-4000-8000-000000000001",
-  email: "student@lokal",
-} as const;
+import { LOCAL_USER } from "./local-user";
+
+export { LOCAL_USER };
 
 export async function bootstrap(db: PGlite, root: string, opts: { seed?: boolean; localUser?: boolean } = {}) {
   const supa = path.join(root, "supabase");

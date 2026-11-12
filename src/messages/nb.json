@@ -68,7 +68,8 @@
     "invalidCredentials": "Feil e-post eller passord.",
     "emailNotConfirmed": "E-posten er ikke bekreftet ennå. Sjekk innboksen din.",
     "genericError": "Innloggingen feilet. Prøv igjen.",
-    "callbackError": "Innloggingslenken var ugyldig eller utløpt. Prøv igjen."
+    "callbackError": "Innloggingslenken var ugyldig eller utløpt. Prøv igjen.",
+    "forbidden": "Denne e-postadressen har ikke tilgang. Appen er privat."
   },
   "onboarding": {
     "title": "Velkommen! La oss sette opp feeden din",

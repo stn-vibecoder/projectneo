@@ -13,6 +13,13 @@ async function OnboardingGate({ children }: { children: React.ReactNode }) {
   return children;
 }
 
+/**
+ * Henting av kilder («Oppdater alle», «Hent stillinger nå», nye kilder) kan ta
+ * et halvt minutt eller mer. Gir alle sider og server actions i appen opptil
+ * 5 minutter på Vercel, i stedet for standardgrensen.
+ */
+export const maxDuration = 300;
+
 export default function AppLayout({ children }: { children: React.ReactNode }) {
   return (
     <div className="min-h-dvh lg:flex">

@@ -127,7 +127,12 @@
     "profileLater": "{count} senere",
     "profileNone": "{count} løpende / uten frist",
     "new": "Ny",
-    "details": "Se stillingen"
+    "details": "Se stillingen",
+    "notFetchedTitle": "Stillingene er ikke hentet ennå",
+    "notFetchedBody": "Du har {count, plural, one {# kilde} other {# kilder}}, men appen har ikke vært innom dem ennå. Hent nå (tar omtrent et halvt minutt), eller vent på den automatiske hentingen tidlig i morgen.",
+    "fetchNow": "Hent stillinger nå",
+    "noSourcesTitle": "Ingen kilder å hente fra",
+    "noSourcesBody": "Legg til karrieresider eller jobbtavler under Kilder, så dukker stillingene opp her."
   },
   "job": {
     "newTitle": "Legg til stilling manuelt",

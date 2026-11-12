@@ -1,7 +1,7 @@
 import { Suspense } from "react";
 import Link from "next/link";
 import { getTranslations } from "next-intl/server";
-import { ChartColumn, ExternalLink, Inbox, MapPin, Plus } from "lucide-react";
+import { ChartColumn, CloudDownload, ExternalLink, Inbox, MapPin, Plus, Radar } from "lucide-react";
 import { Card, CardHeader, CompanyMark, EmptyState, PageHeader, PageSkeleton } from "@/components/ui/card";
 import { DeadlineProfile } from "@/components/charts/deadline-profile";
 import { CityIcon } from "@/components/city-icon";
@@ -9,7 +9,8 @@ import { deadlineProfile } from "@/lib/tracker/series";
 import { buttonVariants } from "@/components/ui/button";
 import { JobMeta } from "@/components/job-meta";
 import { SinceText } from "@/components/dates";
-import { getFeed, getProfile, getWatchedCompanyIds, type FeedFilters as Filters } from "@/lib/data";
+import { getFeed, getProfile, getSources, getWatchedCompanyIds, type FeedFilters as Filters } from "@/lib/data";
+import { RunAllButton } from "../sources/source-controls";
 import { WatchButton } from "@/components/watch-button";
 import { daysSince } from "@/lib/tracker/dates";
 import { isCity, isIndustry, isPeriod } from "@/lib/domain";
@@ -35,6 +36,37 @@ function parseFilters(sp: Record<string, string | string[] | undefined>, allowed
     q: s("q")?.slice(0, 100),
     sort: sort === "newest" || sort === "company" ? sort : "deadline",
   };
+}
+
+/**
+ * Tom feed: skyldes det at kildene aldri er hentet (f.eks. rett etter
+ * oppstart på nett), vis «Hent stillinger nå». Ellers vises vanlig melding (children).
+ */
+async function EmptyFeed({ children }: { children: React.ReactNode }) {
+  const t = await getTranslations();
+  const sources = (await getSources()).filter((s) => s.type !== "manual" && s.enabled);
+  if (sources.length === 0) {
+    return (
+      <EmptyState icon={<Radar />} title={t("feed.noSourcesTitle")} body={t("feed.noSourcesBody")}>
+        <Link href="/sources" className={buttonVariants()}>
+          <Radar />
+          {t("nav.sources")}
+        </Link>
+      </EmptyState>
+    );
+  }
+  if (sources.every((s) => !s.last_run_at)) {
+    return (
+      <EmptyState
+        icon={<CloudDownload />}
+        title={t("feed.notFetchedTitle")}
+        body={t("feed.notFetchedBody", { count: sources.length })}
+      >
+        <RunAllButton label={t("feed.fetchNow")} />
+      </EmptyState>
+    );
+  }
+  return children;
 }
 
 async function FeedContent({ searchParams }: PageProps<"/feed">) {
@@ -133,12 +165,14 @@ async function FeedContent({ searchParams }: PageProps<"/feed">) {
         })()}
 
       {jobs.length === 0 ? (
-        <EmptyState icon={<Inbox />} title={t("feed.emptyTitle")} body={t("feed.emptyBody")}>
-          <Link href="/jobs/new" className={buttonVariants({ variant: "secondary" })}>
-            <Plus />
-            {t("nav.addJob")}
-          </Link>
-        </EmptyState>
+        <EmptyFeed>
+          <EmptyState icon={<Inbox />} title={t("feed.emptyTitle")} body={t("feed.emptyBody")}>
+            <Link href="/jobs/new" className={buttonVariants({ variant: "secondary" })}>
+              <Plus />
+              {t("nav.addJob")}
+            </Link>
+          </EmptyState>
+        </EmptyFeed>
       ) : (
         <ul className="grid gap-3 md:grid-cols-2">
           {jobs.map((job) => {

@@ -25,7 +25,7 @@ function useReport() {
       : toast.error(t("ranError", { name: r.name, error: r.error }));
 }
 
-export function RunAllButton({ disabled }: { disabled?: boolean }) {
+export function RunAllButton({ disabled, label }: { disabled?: boolean; label?: string }) {
   const t = useTranslations("sources");
   const [pending, start] = useTransition();
   return (
@@ -45,7 +45,7 @@ export function RunAllButton({ disabled }: { disabled?: boolean }) {
       }
     >
       <RefreshCw className={cn(pending && "animate-spin")} />
-      {pending ? t("running") : t("runAll")}
+      {pending ? t("running") : (label ?? t("runAll"))}
     </Button>
   );
 }

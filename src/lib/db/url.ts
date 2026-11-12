@@ -1,9 +1,15 @@
 /**
  * Tilkoblingsstreng til Postgres. DATABASE_URL, eller POSTGRES_URL som
- * Vercel sin Supabase-integrasjon legger inn automatisk.
+ * Vercel sin Supabase-integrasjon legger inn automatisk (eventuelt med prefiks).
  */
-export function databaseUrl(): string {
-  return process.env.DATABASE_URL || process.env.POSTGRES_URL || "";
+export function databaseUrl(env: Record<string, string | undefined> = process.env): string {
+  if (env.DATABASE_URL) return env.DATABASE_URL;
+  if (env.POSTGRES_URL) return env.POSTGRES_URL;
+  // Vercel kan legge på et eget prefiks, f.eks. STORAGE_POSTGRES_URL.
+  const key = Object.keys(env)
+    .filter((k) => /(^|_)POSTGRES_URL$/.test(k) && env[k])
+    .sort()[0];
+  return key ? env[key]! : "";
 }
 
 /**

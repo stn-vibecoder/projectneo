@@ -48,7 +48,8 @@ konsulent og revisjon (Big 4) i **Oslo, Stockholm, New York og London**. Appen h
 Prosjektet eies av to personer som begge bruker Claude.
 
 - **GitHub-repo:** `stn-vibecoder/projectneo`. Den andre eieren er lagt til som collaborator.
-- **Vercel:** prosjektet ligger på `stn-vibecoder` sin Hobby-konto. På Hobby kan bygg fra commits laget av andre enn kontoeieren bli blokkert.
+- **Vercel:** prosjektet ligger på `stn-vibecoder` sin Hobby-konto. Testet 12.11.2026: commits fra den andre eierens Claude (via Claude GitHub-appen) bygges og publiseres automatisk. Ingen blokkering.
+- **Claude på nett (claude.ai)** får GitHub-tilgang via Claude GitHub-appen. Den er installert på `stn-vibecoder` med tilgang til `projectneo`.
 - **Begge kan endre fritt og pushe rett til `main`**, uten godkjenning fra den andre. Hver push til `main` går rett ut på nettsiden.
 - **Før hver push:**
   1. Kjør `git pull --rebase` (den andre kan ha pushet i mellomtiden).

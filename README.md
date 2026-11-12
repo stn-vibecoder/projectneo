@@ -187,3 +187,4 @@ Vercel-lenken. Bare e-postene på listen kan lage konto og logge inn.
 
 3. AI-søknadstips med Anthropic API
 4. E-postpåminnelser, CSV-eksport, Supabase + innlogging, finpuss og deploy til Vercel
+
